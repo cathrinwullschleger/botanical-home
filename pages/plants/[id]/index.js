@@ -2,6 +2,26 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import styled from "styled-components";
+import { PlantCard } from "../../../components/PlantCard";
+
+const DetailPageWrapper = styled.div`
+  max-width: 700px; /* max Breite für Detailseite */
+  margin: 40px auto; /* zentriert und oben Abstand */
+  padding: 0 16px; /* horizontaler Abstand mobil */
+`;
+const ImageWrapper = styled.div`
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1; /* quadratisches Verhältnis */
+  margin: 0 auto 30px;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 600px) {
+    max-width: 100%; /* mobil volle Breite nutzen */
+  }
+`;
 
 export default function DetailsPage() {
   const router = useRouter();
@@ -22,24 +42,26 @@ export default function DetailsPage() {
   return (
     <>
       <Link href="/">← Back to Plant Collection</Link>
+      <DetailPageWrapper>
+        <PlantCard>
+          <ImageWrapper>
+            <Image
+              src={plant.imageUrl}
+              alt={plant.name || "Plant Image"}
+              layout="fill"
+              objectFit="cover"
+              priority
+            />
+          </ImageWrapper>
 
-      <div>
-        <Image
-          src={plant.imageUrl}
-          alt={plant.name || "Plant Image"}
-          fill
-          style={{ objectFit: "cover" }}
-          priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      </div>
-
-      <h2>{plant.name}</h2>
-      <h3>{plant.botanicalName}</h3>
-      <p>{plant.description}</p>
-      <p>Fertiliser Season: {plant.fertiliserSeason}</p>
-      <p>Water Needs: {plant.waterNeed}</p>
-      <p>Light Needs: {plant.lightNeed}</p>
+          <h2>{plant.name}</h2>
+          <h3>{plant.botanicalName}</h3>
+          <p>{plant.description}</p>
+          <p>Fertiliser Season: {plant.fertiliserSeason}</p>
+          <p>Water Needs: {plant.waterNeed}</p>
+          <p>Light Needs: {plant.lightNeed}</p>
+        </PlantCard>
+      </DetailPageWrapper>
     </>
   );
 }

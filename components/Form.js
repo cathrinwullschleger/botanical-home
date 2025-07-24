@@ -1,9 +1,56 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
+const FormWrapper = styled.div`
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff; // Farb Konzept eintrage
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+`;
+
 export const FormContainer = styled.form`
   display: grid;
-  gap: 0.3rem;
+  gap: 1rem;
+
+  label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+
+    /* &:focus {
+      border-color: // Farb Konzept eintragen;
+      outline: none;
+    }
+  */
+  }
+  textarea {
+    resize: vertical;
+  }
+`;
+
+const CheckboxGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  label {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
 `;
 
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
@@ -25,7 +72,7 @@ export default function Form({ onSubmit }) {
   }
 
   return (
-    <>
+    <FormWrapper>
       <FormContainer onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input id="name" name="name" type="text" required />
@@ -53,14 +100,14 @@ export default function Form({ onSubmit }) {
         </select>
 
         <label>Fertiliser Season</label>
-        <div>
+        <CheckboxGroup>
           {fertiliserSeasons.map((season) => (
             <label key={season} style={{ marginRight: "1rem" }}>
               <input type="checkbox" name="fertiliserSeason" value={season} />
               {season}
             </label>
           ))}
-        </div>
+        </CheckboxGroup>
 
         <label htmlFor="description">Description</label>
         <textarea
@@ -71,8 +118,8 @@ export default function Form({ onSubmit }) {
           required
         ></textarea>
 
-        <button type="submit">Submit</button>
+        <button type="submit">add Plant</button>
       </FormContainer>
-    </>
+    </FormWrapper>
   );
 }

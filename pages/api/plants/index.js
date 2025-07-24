@@ -2,6 +2,7 @@ import dbConnect from "../../../db/connect";
 import Plant from "@/db/models/Plant";
 
 export default async function handler(request, response) {
+  console.log("API Request received:", request.method);
   await dbConnect();
 
   if (request.method === "GET") {
