@@ -41,7 +41,8 @@ export default function DetailsPage() {
 
   return (
     <>
-      <Link href="/">← Back to Plant Collection</Link>
+      <Link href="/">← </Link>
+
       <DetailPageWrapper>
         <PlantCard>
           <ImageWrapper>

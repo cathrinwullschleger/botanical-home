@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const CardContainer = styled.ul`
   display: grid;
@@ -26,7 +27,6 @@ export const PlantCard = styled.li`
   padding: 16px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  border-radius: 12px;
 
   width: 100%;
   display: flex;
@@ -42,7 +42,7 @@ export const PlantCard = styled.li`
   }
 `;
 
-export const PlantImage = styled.img`
+export const PlantImage = styled(Image)`
   width: 100%; /* Bild füllt Kartenbreite */
   max-width: 320px; /* max Breite auf Tablet */
   height: auto;

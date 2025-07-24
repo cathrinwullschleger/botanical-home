@@ -1,5 +1,6 @@
 import Form from "@/components/Form";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function CreatePlant() {
   const router = useRouter();
@@ -26,10 +27,8 @@ export default function CreatePlant() {
 
   return (
     <>
-      <button type="button" onClick={() => router.back()}>
-        ←
-      </button>
-      <h1>Add a plant</h1>
+      <Link href="/">← </Link>
+      <h1>Add a plant to the Collection</h1>
 
       <Form onSubmit={addPlant} />
     </>
