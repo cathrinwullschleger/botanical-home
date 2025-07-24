@@ -1,6 +1,7 @@
 import Form from "@/components/Form";
 import { useRouter } from "next/router";
-import Link from "next/link";
+
+import { BackLink } from "@/components/BackLink";
 
 export default function CreatePlant() {
   const router = useRouter();
@@ -16,8 +17,6 @@ export default function CreatePlant() {
       if (!res.ok) {
         throw new Error("Failed to add plant");
       }
-
-      // Optionally redirect or show success message
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -27,8 +26,8 @@ export default function CreatePlant() {
 
   return (
     <>
-      <Link href="/">← </Link>
-      <h1>Add a plant to the Collection</h1>
+      <BackLink href="/">←</BackLink>
+      <h1>Add a new Plant to the Collection</h1>
 
       <Form onSubmit={addPlant} />
     </>

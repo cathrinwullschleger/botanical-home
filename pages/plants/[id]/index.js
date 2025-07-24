@@ -1,9 +1,9 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
 import { PlantCard } from "../../../components/PlantCard";
+import { BackLink } from "@/components/BackLink";
 
 const DetailPageWrapper = styled.div`
   max-width: 700px; /* max Breite für Detailseite */
@@ -20,6 +20,17 @@ const ImageWrapper = styled.div`
 
   @media (max-width: 600px) {
     max-width: 100%; /* mobil volle Breite nutzen */
+  }
+`;
+const InlineWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+
+  h4,
+  p {
+    margin: 0;
   }
 `;
 
@@ -41,7 +52,7 @@ export default function DetailsPage() {
 
   return (
     <>
-      <Link href="/">← </Link>
+      <BackLink href="/">← </BackLink>
 
       <DetailPageWrapper>
         <PlantCard>
@@ -58,9 +69,18 @@ export default function DetailsPage() {
           <h2>{plant.name}</h2>
           <h3>{plant.botanicalName}</h3>
           <p>{plant.description}</p>
-          <p>Fertiliser Season: {plant.fertiliserSeason}</p>
-          <p>Water Needs: {plant.waterNeed}</p>
-          <p>Light Needs: {plant.lightNeed}</p>
+          <InlineWrapper>
+            <h4>Fertiliser Season: </h4>
+            <p>{plant.fertiliserSeason.join(", ")}</p>
+          </InlineWrapper>
+          <InlineWrapper>
+            <h4>Water Needs: </h4>
+            <p>{plant.waterNeed}</p>
+          </InlineWrapper>
+          <InlineWrapper>
+            <h4>Light Needs: </h4>
+            <p>{plant.lightNeed}</p>
+          </InlineWrapper>
         </PlantCard>
       </DetailPageWrapper>
     </>
