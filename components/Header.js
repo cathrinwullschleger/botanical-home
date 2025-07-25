@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Italiana } from "next/font/google";
-const italiana = Italiana({ subsets: ["latin"], weight: "400" });
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -16,10 +14,10 @@ const HeaderWrapper = styled.header`
   z-index: 1000;
 `;
 const Title = styled.h1`
-  font-family: ${italiana.style.fontFamily};
+  font-family: var(--font-family-h);
   font-size: 2rem;
   margin: 0;
-  color: #222;
+  color: var(--color-light-dark);
   margin-bottom: 1rem;
 `;
 const Nav = styled.nav`
@@ -32,13 +30,13 @@ const Nav = styled.nav`
 
 const Dot = styled.span`
   font-size: 1.25rem;
-  color: #222;
+  color: var(--color-light-dark);
 `;
 const NavLink = styled(Link)`
   position: relative;
   text-decoration: none;
-  color: #222;
-  font-family: ${italiana.style.fontFamily};
+  color: var(--color-light-dark);
+  font-family: var(--font-family-h);
   font-size: 1.3rem;
   &::after {
     content: "";

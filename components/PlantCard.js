@@ -23,9 +23,10 @@ export const CardContainer = styled.ul`
 `;
 
 export const PlantCard = styled.li`
-  background: #fff;
+  background: var(--color-background-white);
   padding: 16px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
+  border-radius: 0.12rem;
   text-align: center;
 
   width: 100%;
