@@ -1,5 +1,6 @@
-import GlobalStyle from "../styles";
+import GlobalStyle, { mulish, italiana } from "../styles";
 import { SWRConfig } from "swr";
+import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -15,8 +16,12 @@ export default function App({ Component, pageProps }) {
           },
         }}
       >
-        <GlobalStyle />
-        <Component {...pageProps} />
+        <div className={`${mulish.variable} ${italiana.variable}`}>
+          <GlobalStyle />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </div>
       </SWRConfig>
     </>
   );

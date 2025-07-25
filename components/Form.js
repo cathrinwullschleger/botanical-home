@@ -1,20 +1,51 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-const FormWrapper = styled.div`
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fff; // Farb Konzept eintrage
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+const SubmitButton = styled.button`
+  display: inline-block;
+  justify-self: center;
+  border: 1px solid black;
+  background: transparent;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border-radius: 0.12rem;
+  width: auto;
+  cursor: pointer;
+  font-weight: 400;
+  transition: font-weight 0.2s ease;
+
+  &:hover {
+    background: var(--color-light-dark);
+    color: var(--color-natural-white);
+  }
 `;
 
-export const FormContainer = styled.form`
+const FormWrapper = styled.div`
+  max-width: 500px;
+  margin: 40px auto;
+  border-radius: 0.12rem;
+  padding: 40px;
+  background: var(--color-background-white);
+  box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
+
+  @media (min-width: 600px) {
+    max-widht: 600px;
+    padding: 20px;
+  }
+
+  @media (min-width: 900px) {
+    max-width: 900px;
+    padding: 24px;
+  }
+`;
+
+const FormContainer = styled.form`
   display: grid;
   gap: 1rem;
+  padding: 1rem;
 
   label {
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 0.3rem;
     display: block;
   }
@@ -22,18 +53,14 @@ export const FormContainer = styled.form`
   input[type="text"],
   select,
   textarea {
+    font-family: var(--font-family-body);
     width: 100%;
     padding: 0.6rem;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    border: 1px solid var(--color-shadow-black);
     border-radius: 4px;
     font-size: 1rem;
     transition: border-color 0.2s ease;
-
-    /* &:focus {
-      border-color: // Farb Konzept eintragen;
-      outline: none;
-    }
-  */
   }
   textarea {
     resize: vertical;
@@ -53,6 +80,15 @@ const CheckboxGroup = styled.div`
   }
 `;
 
+const StyledSelect = styled.select`
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  color: var(--color-light-black);
+
+  &:invalid {
+    color: var(--color-light-grey);
+  }
+`;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
 export default function Form({ onSubmit }) {
@@ -64,7 +100,7 @@ export default function Form({ onSubmit }) {
 
     // Custom validation: at least one fertiliserSeason checkbox checked
     if (data.fertiliserSeason.length === 0) {
-      alert("Please select at least one fertiliser season.");
+      // alert("Please select at least one fertiliser season."); new issue for accessibility and hints
       return;
     }
 
@@ -84,20 +120,20 @@ export default function Form({ onSubmit }) {
         <input id="imageUrl" name="imageUrl" type="text" required />
 
         <label htmlFor="waterNeed">Water Need</label>
-        <select id="waterNeed" name="waterNeed" required>
+        <StyledSelect id="waterNeed" name="waterNeed" required>
           <option value="">Select water need</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
-        </select>
+        </StyledSelect>
 
         <label htmlFor="lightNeed">Light Need</label>
-        <select id="lightNeed" name="lightNeed" required>
+        <StyledSelect id="lightNeed" name="lightNeed" required>
           <option value="">Select light need</option>
           <option value="Full Sun">Full Sun</option>
           <option value="Partial Shade">Partial Shade</option>
           <option value="Shade">Shade</option>
-        </select>
+        </StyledSelect>
 
         <label>Fertiliser Season</label>
         <CheckboxGroup>
@@ -118,7 +154,7 @@ export default function Form({ onSubmit }) {
           required
         ></textarea>
 
-        <button type="submit">add Plant</button>
+        <SubmitButton type="submit">add Plant</SubmitButton>
       </FormContainer>
     </FormWrapper>
   );
