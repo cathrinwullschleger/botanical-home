@@ -21,7 +21,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const Form = styled.form`
+const FormContainer = styled.form`
   display: grid;
   gap: 1rem;
   padding: 1rem;
@@ -90,7 +90,7 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormWrapper>
-      <Form onSubmit={handleSubmit}>
+      <FormContainer onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input id="name" name="name" type="text" required />
 
@@ -136,7 +136,7 @@ export default function Form({ onSubmit }) {
         ></textarea>
 
         <StyledButton type="submit">add Plant</StyledButton>
-      </Form>
+      </FormContainer>
     </FormWrapper>
   );
 }
