@@ -21,7 +21,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const FormContainer = styled.form`
+const StyledForm = styled.form`
   display: grid;
   gap: 1rem;
   padding: 1rem;
@@ -81,7 +81,7 @@ export default function Form({ onSubmit }) {
 
     // Custom validation: at least one fertiliserSeason checkbox checked
     if (data.fertiliserSeason.length === 0) {
-      // alert("Please select at least one fertiliser season."); new issue for accessibility and hints
+      alert("Please select at least one fertiliser season.");
       return;
     }
 
@@ -90,7 +90,7 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormWrapper>
-      <FormContainer onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input id="name" name="name" type="text" required />
 
@@ -136,7 +136,7 @@ export default function Form({ onSubmit }) {
         ></textarea>
 
         <StyledButton type="submit">add Plant</StyledButton>
-      </FormContainer>
+      </StyledForm>
     </FormWrapper>
   );
 }

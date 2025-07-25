@@ -47,18 +47,22 @@ export default function DetailsPage() {
     isLoading,
   } = useSWR(id ? `/api/plants/${id}` : null);
 
-  if (!id) return <h2>Please select a plant.</h2>;
+  if (!id) return <h2>Please select a Plant.</h2>;
   if (isLoading) return <h2>Loading ..</h2>;
-  if (error) return <h2> Error loading plant.</h2>;
+  if (error) return <h2> Error loading Plant.</h2>;
   if (!plant && !isLoading && !error)
     return <h2>Unfortunately no Plant found. </h2>;
 
   async function deletePlant() {
     const response = await fetch(`/api/plants/${id}`, { method: "DELETE" }); //delete request
-    if (response.ok) {
-      router.push("/");
-    } //else?
+    if (!response.ok) {
+      console.error(response.status);
+      return;
+    }
+
+    router.push("/");
   }
+
   return (
     <>
       <BackLink href="/">← </BackLink>
