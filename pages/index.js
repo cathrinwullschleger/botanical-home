@@ -6,8 +6,7 @@ export default function HomePage() {
   const { data: plants, error, isLoading } = useSWR("/api/plants");
   if (isLoading) return <h2>Loading ..</h2>;
   if (error) return <h2> Error loading Plant.</h2>;
-  if (!plants && !isLoading && !error)
-    return <h2>Unfortunately no Plant found. </h2>;
+  if (!plants) return <h2>Unfortunately no Plant found. </h2>;
 
   if (plants.length === 0) {
     return (

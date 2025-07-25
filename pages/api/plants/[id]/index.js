@@ -21,7 +21,7 @@ export default async function handler(request, response) {
       }
       return response
         .status(200)
-        .json({ status: `Plant{id} is successfully deleted.` });
+        .json({ status: `Plant${id} is successfully deleted.` });
     }
     return response.status(405).json({ status: "Method not allowed!" });
   } catch (error) {

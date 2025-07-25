@@ -13,7 +13,6 @@ export const StyledButton = styled.button`
   width: auto;
   cursor: pointer;
   font-weight: 400;
-  transition: font-weight 0.2s ease;
 
   &:hover {
     background: var(--color-light-dark);

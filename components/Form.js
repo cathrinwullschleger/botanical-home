@@ -11,7 +11,7 @@ const FormWrapper = styled.div`
   box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
 
   @media (min-width: 600px) {
-    max-widht: 600px;
+    max-width: 600px;
     padding: 20px;
   }
 
@@ -21,7 +21,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const FormContainer = styled.form`
+const Form = styled.form`
   display: grid;
   gap: 1rem;
   padding: 1rem;
@@ -38,7 +38,6 @@ const FormContainer = styled.form`
     font-family: var(--font-family-body);
     width: 100%;
     padding: 0.6rem;
-    /* border: 1px solid #ccc; */
     border: 1px solid var(--color-shadow-black);
     border-radius: 4px;
     font-size: 1rem;
@@ -91,7 +90,7 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormWrapper>
-      <FormContainer onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input id="name" name="name" type="text" required />
 
@@ -137,7 +136,7 @@ export default function Form({ onSubmit }) {
         ></textarea>
 
         <StyledButton type="submit">add Plant</StyledButton>
-      </FormContainer>
+      </Form>
     </FormWrapper>
   );
 }

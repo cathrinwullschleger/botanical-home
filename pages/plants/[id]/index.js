@@ -2,7 +2,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styled from "styled-components";
-import { PlantCard } from "../../../components/PlantCard";
+import { PlantCard } from "@/components/PlantCard";
 import { BackLink } from "@/components/BackLink";
 import { StyledButton } from "@/components/StyledButton.js";
 import { useState } from "react";
