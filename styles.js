@@ -29,15 +29,17 @@ export default createGlobalStyle`
    margin: 0;
   padding: 0;
     font-family: var(--font-family-body);
+    color: var(--color-light-dark);
     font-weight: 400;
   }
 
 
   h1, h2 {
     font-family: var(--font-family-h);
+    color: var(--color-light-dark);
     font-weight: 400;
     margin: 0;
-    margin-top:1rem;
+    margin-top:2rem;
     font-size: 1.4rem;
     line-height: 1.2;
       text-align: center;
