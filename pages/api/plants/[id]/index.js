@@ -14,6 +14,15 @@ export default async function handler(request, response) {
       return response.status(200).json(plant);
     }
 
+    if (request.method === "DELETE") {
+      const deleted = await Plant.findByIdAndDelete(id);
+      if (!deleted) {
+        return response.status(404).json({ status: "No Plant found!" });
+      }
+      return response
+        .status(200)
+        .json({ status: `Plant${id} is successfully deleted.` });
+    }
     return response.status(405).json({ status: "Method not allowed!" });
   } catch (error) {
     return response.status(500).json({

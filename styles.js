@@ -23,11 +23,7 @@ export default createGlobalStyle`
 --color-shadow-black-rgba: rgba(0, 0, 0, 0.1);
   --color-light-grey: #808080;
   --color-background-white: #FAFAFA;
-
-   --font-family-body: ${mulish.style.fontFamily};
-    --font-family-h: ${italiana.style.fontFamily};
-
-  
+ 
 }
   body {
    margin: 0;

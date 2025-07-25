@@ -1,24 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-
-const SubmitButton = styled.button`
-  display: inline-block;
-  justify-self: center;
-  border: 1px solid black;
-  background: transparent;
-  padding: 0.5em 1em;
-  font-size: 1rem;
-  border-radius: 0.12rem;
-  width: auto;
-  cursor: pointer;
-  font-weight: 400;
-  transition: font-weight 0.2s ease;
-
-  &:hover {
-    background: var(--color-light-dark);
-    color: var(--color-natural-white);
-  }
-`;
+import { StyledButton } from "@/components/StyledButton.js";
 
 const FormWrapper = styled.div`
   max-width: 500px;
@@ -29,7 +11,7 @@ const FormWrapper = styled.div`
   box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
 
   @media (min-width: 600px) {
-    max-widht: 600px;
+    max-width: 600px;
     padding: 20px;
   }
 
@@ -39,7 +21,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const FormContainer = styled.form`
+const StyledForm = styled.form`
   display: grid;
   gap: 1rem;
   padding: 1rem;
@@ -56,7 +38,6 @@ const FormContainer = styled.form`
     font-family: var(--font-family-body);
     width: 100%;
     padding: 0.6rem;
-    /* border: 1px solid #ccc; */
     border: 1px solid var(--color-shadow-black);
     border-radius: 4px;
     font-size: 1rem;
@@ -100,7 +81,7 @@ export default function Form({ onSubmit }) {
 
     // Custom validation: at least one fertiliserSeason checkbox checked
     if (data.fertiliserSeason.length === 0) {
-      // alert("Please select at least one fertiliser season."); new issue for accessibility and hints
+      alert("Please select at least one fertiliser season.");
       return;
     }
 
@@ -109,7 +90,7 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormWrapper>
-      <FormContainer onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input id="name" name="name" type="text" required />
 
@@ -154,8 +135,8 @@ export default function Form({ onSubmit }) {
           required
         ></textarea>
 
-        <SubmitButton type="submit">add Plant</SubmitButton>
-      </FormContainer>
+        <StyledButton type="submit">add Plant</StyledButton>
+      </StyledForm>
     </FormWrapper>
   );
 }
