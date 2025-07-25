@@ -4,6 +4,8 @@ import Image from "next/image";
 import styled from "styled-components";
 import { PlantCard } from "../../../components/PlantCard";
 import { BackLink } from "@/components/BackLink";
+import { StyledButton } from "@/components/StyledButton.js";
+import { useState } from "react";
 
 const DetailPageWrapper = styled.div`
   max-width: 700px; /* max Breite für Detailseite */
@@ -37,6 +39,7 @@ const InlineWrapper = styled.div`
 export default function DetailsPage() {
   const router = useRouter();
   const { id } = router.query;
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const {
     data: plant,
@@ -50,6 +53,12 @@ export default function DetailsPage() {
   if (!plant && !isLoading && !error)
     return <h2>Unfortunately no Plant found. </h2>;
 
+  async function deletePlant() {
+    const response = await fetch(`/api/plants/${id}`, { method: "DELETE" }); //delete request
+    if (response.ok) {
+      router.push("/");
+    } //else?
+  }
   return (
     <>
       <BackLink href="/">← </BackLink>
@@ -81,6 +90,22 @@ export default function DetailsPage() {
             <h4>Light Needs: </h4>
             <p>{plant.lightNeed}</p>
           </InlineWrapper>
+          {!showConfirm && (
+            <StyledButton onClick={() => setShowConfirm(true)} type="button">
+              Remove this Plant
+            </StyledButton>
+          )}
+          {showConfirm && (
+            <div>
+              <p>Do you really want to remove this plant?</p>
+              <StyledButton onClick={deletePlant} type="button">
+                Yes, remove this Plant
+              </StyledButton>
+              <StyledButton onClick={() => setShowConfirm(false)} type="button">
+                Cancel
+              </StyledButton>
+            </div>
+          )}
         </PlantCard>
       </DetailPageWrapper>
     </>

@@ -1,24 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-
-const SubmitButton = styled.button`
-  display: inline-block;
-  justify-self: center;
-  border: 1px solid black;
-  background: transparent;
-  padding: 0.5em 1em;
-  font-size: 1rem;
-  border-radius: 0.12rem;
-  width: auto;
-  cursor: pointer;
-  font-weight: 400;
-  transition: font-weight 0.2s ease;
-
-  &:hover {
-    background: var(--color-light-dark);
-    color: var(--color-natural-white);
-  }
-`;
+import { StyledButton } from "@/components/StyledButton.js";
 
 const FormWrapper = styled.div`
   max-width: 500px;
@@ -154,7 +136,7 @@ export default function Form({ onSubmit }) {
           required
         ></textarea>
 
-        <SubmitButton type="submit">add Plant</SubmitButton>
+        <StyledButton type="submit">add Plant</StyledButton>
       </FormContainer>
     </FormWrapper>
   );

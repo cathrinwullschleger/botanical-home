@@ -5,10 +5,15 @@ import { PlantCard, CardContainer, PlantImage } from "../components/PlantCard";
 export default function HomePage() {
   const { data: plants, error, isLoading } = useSWR("/api/plants");
   if (isLoading) return <h2>Loading ..</h2>;
-  if (error) return <h2> Error loading plant.</h2>;
+  if (error) return <h2> Error loading Plant.</h2>;
   if (!plants && !isLoading && !error)
     return <h2>Unfortunately no Plant found. </h2>;
 
+  if (plants.length === 0) {
+    return (
+      <p>The collection is empty. Add your first Plant and start growing!</p>
+    );
+  }
   return (
     <CardContainer>
       {plants.map((plant) => (
