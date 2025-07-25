@@ -25,6 +25,7 @@ const StyledForm = styled.form`
   display: grid;
   gap: 1rem;
   padding: 1rem;
+  font-family: var(--font-family-body);
 
   label {
     font-weight: 400;
