@@ -8,7 +8,7 @@ export const italiana = Italiana({
 });
 export const mulish = Mulish({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "700"],
   variable: "--font-family-body",
 });
 export default createGlobalStyle`
