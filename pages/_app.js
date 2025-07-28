@@ -4,14 +4,12 @@ import Layout from "@/components/Layout";
 import { useState, useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
-  const [likedPlants, setLikedPlants] = useState([]);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("likedPlants");
-    if (stored) {
-      setLikedPlants(JSON.parse(stored));
-    }
-  }, []); // first time rendering, checking are there stored Plants in localstorage? parse to likedPlants state
+  const [likedPlants, setLikedPlants] = useState(() => {
+    if (typeof window === "undefined") return [];
+    const saved = localStorage.getItem("likedPlants");
+    return saved ? JSON.parse(saved) : [];
+  });
+  // first time rendering, checking are there stored Plants in localstorage? parse to likedPlants state
 
   useEffect(() => {
     localStorage.setItem("likedPlants", JSON.stringify(likedPlants));

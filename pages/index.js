@@ -12,7 +12,7 @@ export default function HomePage({ likedPlants, toggleLikedPlant }) {
       <p>The collection is empty. Add your first Plant and start growing!</p>
     );
   }
-  console.log(plants);
+
   return (
     <CardContainer>
       {plants.map((plant) => (

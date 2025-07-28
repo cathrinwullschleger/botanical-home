@@ -46,7 +46,7 @@ export const StyledCard = styled.li`
   }
 `;
 
-export const StyledImage = styled(Image)`
+export const PlantImage = styled(Image)`
   width: 100%; /* Bild füllt Kartenbreite */
   max-width: 320px; /* max Breite auf Tablet */
   height: auto;
@@ -62,7 +62,7 @@ export default function PlantCard({ plant, isLiked, onToggle }) {
     <StyledCard>
       <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
       <Link href={`/plants/${plant._id}`}>
-        <StyledImage
+        <PlantImage
           src={plant.imageUrl}
           alt={plant.name || "Plant Image"}
           width={200}

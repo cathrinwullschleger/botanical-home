@@ -76,7 +76,7 @@ export default function DetailsPage() {
         <PlantDetailCard
           plant={plant}
           onEdit={handleEdit}
-          onDelete={deletePlant}
+          onDelete={handleDelete}
           showConfirm={showConfirm}
           setShowConfirm={setShowConfirm}
         />
