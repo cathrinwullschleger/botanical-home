@@ -4,7 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { PlantCard } from "@/components/PlantCard";
 import { BackLink } from "@/components/BackLink";
-import { StyledButton } from "@/components/StyledButton.js";
+import { StyledButton, ButtonWrapper } from "@/components/StyledButton.js";
 import { useState } from "react";
 
 const DetailPageWrapper = styled.div`
@@ -94,20 +94,33 @@ export default function DetailsPage() {
             <h4>Light Needs: </h4>
             <p>{plant.lightNeed}</p>
           </InlineWrapper>
-          {!showConfirm && (
-            <StyledButton onClick={() => setShowConfirm(true)} type="button">
-              Remove this Plant
+          <ButtonWrapper>
+            <StyledButton
+              type="button"
+              onClick={() => router.push(`/plants/${id}/edit`)}
+            >
+              Edit this Plant
             </StyledButton>
-          )}
+            {!showConfirm && (
+              <StyledButton onClick={() => setShowConfirm(true)} type="button">
+                Remove this Plant
+              </StyledButton>
+            )}
+          </ButtonWrapper>
           {showConfirm && (
             <div>
               <p>Do you really want to remove this plant?</p>
-              <StyledButton onClick={deletePlant} type="button">
-                Yes, remove this Plant
-              </StyledButton>
-              <StyledButton onClick={() => setShowConfirm(false)} type="button">
-                Cancel
-              </StyledButton>
+              <ButtonWrapper>
+                <StyledButton onClick={deletePlant} type="button">
+                  Yes, remove this Plant
+                </StyledButton>
+                <StyledButton
+                  onClick={() => setShowConfirm(false)}
+                  type="button"
+                >
+                  Cancel
+                </StyledButton>
+              </ButtonWrapper>
             </div>
           )}
         </PlantCard>

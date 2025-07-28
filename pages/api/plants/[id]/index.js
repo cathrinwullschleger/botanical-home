@@ -23,6 +23,17 @@ export default async function handler(request, response) {
         .status(200)
         .json({ status: `Plant${id} is successfully deleted.` });
     }
+
+    if (request.method === "PUT") {
+      const plantData = request.body;
+      const updated = await Plant.findByIdAndUpdate(id, plantData);
+      if (!updated) {
+        return response.status(404).json({ status: "No Plant found!" });
+      }
+      return response
+        .status(200)
+        .json({ status: `Plant${id} is successfully updated.` });
+    }
     return response.status(405).json({ status: "Method not allowed!" });
   } catch (error) {
     return response.status(500).json({

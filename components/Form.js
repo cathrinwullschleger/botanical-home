@@ -73,7 +73,7 @@ const StyledSelect = styled.select`
 `;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, defaultData }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -93,16 +93,39 @@ export default function Form({ onSubmit }) {
     <FormWrapper>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
-        <input id="name" name="name" type="text" required />
+        <input
+          id="name"
+          name="name"
+          type="text"
+          defaultValue={defaultData?.name}
+          required
+        />
 
         <label htmlFor="botanicalName">Botanical Name</label>
-        <input id="botanicalName" name="botanicalName" type="text" required />
+        <input
+          id="botanicalName"
+          name="botanicalName"
+          type="text"
+          defaultValue={defaultData?.botanicalName}
+          required
+        />
 
         <label htmlFor="imageUrl">Image Url</label>
-        <input id="imageUrl" name="imageUrl" type="text" required />
+        <input
+          id="imageUrl"
+          name="imageUrl"
+          type="text"
+          defaultValue={defaultData?.imageUrl}
+          required
+        />
 
         <label htmlFor="waterNeed">Water Need</label>
-        <StyledSelect id="waterNeed" name="waterNeed" required>
+        <StyledSelect
+          id="waterNeed"
+          name="waterNeed"
+          defaultValue={defaultData?.waterNeed}
+          required
+        >
           <option value="">Select water need</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
@@ -110,7 +133,12 @@ export default function Form({ onSubmit }) {
         </StyledSelect>
 
         <label htmlFor="lightNeed">Light Need</label>
-        <StyledSelect id="lightNeed" name="lightNeed" required>
+        <StyledSelect
+          id="lightNeed"
+          name="lightNeed"
+          defaultValue={defaultData?.lightNeed}
+          required
+        >
           <option value="">Select light need</option>
           <option value="Full Sun">Full Sun</option>
           <option value="Partial Shade">Partial Shade</option>
@@ -121,7 +149,12 @@ export default function Form({ onSubmit }) {
         <CheckboxGroup>
           {fertiliserSeasons.map((season) => (
             <label key={season} style={{ marginRight: "1rem" }}>
-              <input type="checkbox" name="fertiliserSeason" value={season} />
+              <input
+                type="checkbox"
+                name="fertiliserSeason"
+                value={season}
+                defaultChecked={defaultData?.fertiliserSeason?.includes(season)}
+              />
               {season}
             </label>
           ))}
@@ -133,10 +166,14 @@ export default function Form({ onSubmit }) {
           id="description"
           cols="30"
           rows="5"
+          defaultValue={defaultData?.description}
           required
         ></textarea>
 
-        <StyledButton type="submit">add Plant</StyledButton>
+        <StyledButton type="submit">
+          {" "}
+          {defaultData ? "Update Plant" : "Add Plant"}
+        </StyledButton>
       </StyledForm>
     </FormWrapper>
   );
