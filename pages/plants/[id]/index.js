@@ -1,11 +1,9 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import styled from "styled-components";
-import { PlantCard } from "@/components/PlantCard";
 import { BackLink } from "@/components/BackLink";
-import { StyledButton, ButtonWrapper } from "@/components/StyledButton.js";
 import { useState } from "react";
+import PlantDetailCard from "@/components/PlantDetailCard";
 
 const DetailPageWrapper = styled.div`
   max-width: 700px; /* max Breite für Detailseite */
@@ -41,6 +39,13 @@ export default function DetailsPage() {
   const { id } = router.query;
   const [showConfirm, setShowConfirm] = useState(false);
 
+  function handleEdit() {
+    router.push(`/plants/${id}/edit`);
+  }
+
+  function handleDelete() {
+    router.push(`/`);
+  }
   const {
     data: plant,
     error,
@@ -68,62 +73,13 @@ export default function DetailsPage() {
       <BackLink href="/">← </BackLink>
 
       <DetailPageWrapper>
-        <PlantCard>
-          <ImageWrapper>
-            <Image
-              src={plant.imageUrl}
-              alt={plant.name || "Plant Image"}
-              layout="fill"
-              objectFit="cover"
-              priority
-            />
-          </ImageWrapper>
-
-          <h2>{plant.name}</h2>
-          <h3>{plant.botanicalName}</h3>
-          <p>{plant.description}</p>
-          <InlineWrapper>
-            <h4>Fertiliser Season: </h4>
-            <p>{plant.fertiliserSeason.join(", ")}</p>
-          </InlineWrapper>
-          <InlineWrapper>
-            <h4>Water Needs: </h4>
-            <p>{plant.waterNeed}</p>
-          </InlineWrapper>
-          <InlineWrapper>
-            <h4>Light Needs: </h4>
-            <p>{plant.lightNeed}</p>
-          </InlineWrapper>
-          <ButtonWrapper>
-            <StyledButton
-              type="button"
-              onClick={() => router.push(`/plants/${id}/edit`)}
-            >
-              Edit this Plant
-            </StyledButton>
-            {!showConfirm && (
-              <StyledButton onClick={() => setShowConfirm(true)} type="button">
-                Remove this Plant
-              </StyledButton>
-            )}
-          </ButtonWrapper>
-          {showConfirm && (
-            <div>
-              <p>Do you really want to remove this plant?</p>
-              <ButtonWrapper>
-                <StyledButton onClick={deletePlant} type="button">
-                  Yes, remove this Plant
-                </StyledButton>
-                <StyledButton
-                  onClick={() => setShowConfirm(false)}
-                  type="button"
-                >
-                  Cancel
-                </StyledButton>
-              </ButtonWrapper>
-            </div>
-          )}
-        </PlantCard>
+        <PlantDetailCard
+          plant={plant}
+          onEdit={handleEdit}
+          onDelete={deletePlant}
+          showConfirm={showConfirm}
+          setShowConfirm={setShowConfirm}
+        />
       </DetailPageWrapper>
     </>
   );

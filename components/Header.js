@@ -71,7 +71,7 @@ export default function Header() {
           Add Plant
         </NavLink>
         <Dot>•</Dot>
-        <NavLink href="/collection" $active={pathname === "/collection"}>
+        <NavLink href="/my-collection" $active={pathname === "/my-collection"}>
           My Collection
         </NavLink>
       </Nav>
