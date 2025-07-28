@@ -61,7 +61,7 @@ export default function Header() {
 
   return (
     <HeaderWrapper>
-      <Title>Botanicals Home</Title>
+      <Title>Botanical Home</Title>
       <Nav>
         <NavLink href="/" $active={pathname === "/"}>
           Home

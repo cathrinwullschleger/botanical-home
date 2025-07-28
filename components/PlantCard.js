@@ -24,6 +24,7 @@ export const CardContainer = styled.ul`
 
 export const PlantCard = styled.li`
   background: var(--color-background-white);
+  font-family: var(--font-family-body);
   padding: 16px;
   box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
   border-radius: 0.12rem;

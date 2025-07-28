@@ -28,7 +28,7 @@ export default createGlobalStyle`
   body {
    margin: 0;
   padding: 0;
-    font-family: var(--font-family-body);
+    font-family: var(--font-family-body)  !important;;
     color: var(--color-light-dark);
     font-weight: 400;
   }
