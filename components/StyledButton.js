@@ -8,7 +8,6 @@ export const StyledButton = styled.button`
   background: transparent;
   padding: 0.5em 1em;
   font-size: 1rem;
-  margin-right: 0.5rem;
   border-radius: 0.12rem;
   width: auto;
   cursor: pointer;
@@ -18,4 +17,9 @@ export const StyledButton = styled.button`
     background: var(--color-light-dark);
     color: var(--color-natural-white);
   }
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
