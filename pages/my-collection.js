@@ -8,12 +8,9 @@ export default function MyCollection({ likedPlants, toggleLikedPlant }) {
   if (error) return <h2> Error loading Plant.</h2>;
   if (!plants) return <h2>Unfortunately no Plant found. </h2>;
 
-  console.log("Liked Plants:", likedPlants);
-
   const favoritePlants = plants.filter((plant) =>
     likedPlants.includes(plant._id)
   );
-
   return (
     <>
       <BackLink href="/">←</BackLink>

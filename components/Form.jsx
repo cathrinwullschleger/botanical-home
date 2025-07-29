@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { StyledButton, ButtonWrapper } from "@/components/StyledButton.js";
+import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
 
 const FormWrapper = styled.div`
   max-width: 500px;

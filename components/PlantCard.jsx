@@ -26,6 +26,7 @@ export const CardContainer = styled.ul`
 
 export const StyledCard = styled.li`
   background: var(--color-background-white);
+  color: var(--color-light-dark);
   font-family: var(--font-family-body);
   padding: 16px;
   box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
@@ -71,7 +72,6 @@ export default function PlantCard({ plant, isLiked, onToggle }) {
           priority
         />
       </Link>
-
       <h2>{plant.name}</h2>
       <h3>{plant.botanicalName}</h3>
     </StyledCard>

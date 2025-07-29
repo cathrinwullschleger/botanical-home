@@ -39,13 +39,6 @@ export default function DetailsPage() {
   const { id } = router.query;
   const [showConfirm, setShowConfirm] = useState(false);
 
-  function handleEdit() {
-    router.push(`/plants/${id}/edit`);
-  }
-
-  function handleDelete() {
-    router.push(`/`);
-  }
   const {
     data: plant,
     error,
@@ -58,7 +51,7 @@ export default function DetailsPage() {
   if (!plant && !isLoading && !error)
     return <h2>Unfortunately no Plant found. </h2>;
 
-  async function deletePlant() {
+  async function handleDelete() {
     const response = await fetch(`/api/plants/${id}`, { method: "DELETE" }); //delete request
     if (!response.ok) {
       console.error(response.status);
@@ -75,7 +68,6 @@ export default function DetailsPage() {
       <DetailPageWrapper>
         <PlantDetailCard
           plant={plant}
-          onEdit={handleEdit}
           onDelete={handleDelete}
           showConfirm={showConfirm}
           setShowConfirm={setShowConfirm}

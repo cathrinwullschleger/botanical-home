@@ -52,6 +52,13 @@ h3 {
     font-size: 1.2rem;
     
 }
+p {
+  font-family: var(--font-family-body);
+  text-align: center;
+  font-weight: 400;
+  
+  
+}
   button {
     font-family: var(--font-family-body);
     font-weight: 400;

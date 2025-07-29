@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
 import FavoriteButton from "./FavoriteButton";
-import { BackLink } from "./BackLink";
-import { StyledButton, ButtonWrapper } from "@/components/StyledButton.js";
+import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
+import { StyledLink } from "./StyledLink";
 
 export const StyledCard = styled.li`
   background: var(--color-background-white);
@@ -50,7 +50,7 @@ export default function PlantDetailCard({
   plant,
   isLiked,
   onToggle,
-  onEdit,
+  id,
   showConfirm,
   setShowConfirm,
   onDelete,
@@ -85,9 +85,8 @@ export default function PlantDetailCard({
         <p>{plant.lightNeed}</p>
       </InlineWrapper>
       <ButtonWrapper>
-        <StyledButton type="button" onClick={onEdit}>
-          Edit this Plant
-        </StyledButton>
+        <StyledLink href={`/plants/${id}/edit`}>Edit this Plant</StyledLink>
+
         {!showConfirm && (
           <StyledButton onClick={() => setShowConfirm(true)} type="button">
             Remove this Plant

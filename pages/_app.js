@@ -1,19 +1,12 @@
 import GlobalStyle, { mulish, italiana } from "../styles";
 import { SWRConfig } from "swr";
 import Layout from "@/components/Layout";
-import { useState, useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
-  const [likedPlants, setLikedPlants] = useState(() => {
-    if (typeof window === "undefined") return [];
-    const saved = localStorage.getItem("likedPlants");
-    return saved ? JSON.parse(saved) : [];
+  const [likedPlants, setLikedPlants] = useLocalStorageState("likedPlants", {
+    defaultValue: [],
   });
-  // first time rendering, checking are there stored Plants in localstorage? parse to likedPlants state
-
-  useEffect(() => {
-    localStorage.setItem("likedPlants", JSON.stringify(likedPlants));
-  }, [likedPlants]); // by changing safe via json string in localstorage
 
   function toggleLikedPlant(id) {
     setLikedPlants(
