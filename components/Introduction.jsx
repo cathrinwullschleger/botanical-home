@@ -4,7 +4,7 @@ import Image from "next/image";
 const IntroWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 0;
   margin-bottom: 2rem;
   padding: 0 20px;

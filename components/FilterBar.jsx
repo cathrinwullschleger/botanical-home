@@ -2,16 +2,8 @@ import { StyledButton } from "./StyledButton";
 import styled from "styled-components";
 
 const FilterBarWrapper = styled.div`
-  /* justify-content: center;
-  gap: 5rem;
-
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-
-  padding: 0 50px; /* mobil 16px Seitenabstand */
-  display: grid;
-  gap: 5rem;
+  gap: 2rem;
   margin: 40px auto;
   max-width: 1200px;
 
