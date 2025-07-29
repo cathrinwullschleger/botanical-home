@@ -4,18 +4,25 @@ import Image from "next/image";
 const IntroWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 5.5rem;
+  gap: 2rem;
+  margin-top: 0;
+  padding: 0 20px;
 
-  padding: 0 50px;
-  margin: 40px auto;
   max-width: 1200px;
+  flex-direction: column;
 
   @media (min-width: 600px) {
+    flex-direction: row;
     padding: 0 40px;
+    gap: 5.5rem;
+    margin: 40px auto;
   }
 
   @media (min-width: 900px) {
+    flex-direction: row;
     padding: 0 60px;
+    margin: 40px auto;
+    gap: 5.5rem;
   }
 `;
 
