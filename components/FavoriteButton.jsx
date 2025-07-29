@@ -1,7 +1,19 @@
+import styled from "styled-components";
+
+const HeartButton = styled.button`
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+
+  background-color: transparent;
+  border: none;
+  font-size: 1.7rem;
+`;
+
 export default function FavoriteButton({ isLiked, onToggle }) {
   return (
-    <button onClick={onToggle} aria-label="Toggle favorite">
+    <HeartButton onClick={onToggle} aria-label="Toggle favorite">
       {isLiked ? "♥" : "♡"}
-    </button>
+    </HeartButton>
   );
 }

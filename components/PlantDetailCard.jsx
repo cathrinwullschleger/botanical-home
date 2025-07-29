@@ -3,28 +3,7 @@ import Image from "next/image";
 import FavoriteButton from "./FavoriteButton";
 import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
 import { StyledLink } from "./StyledLink";
-
-export const StyledCard = styled.li`
-  background: var(--color-background-white);
-  font-family: var(--font-family-body);
-  padding: 16px;
-  box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
-  border-radius: 0.12rem;
-  text-align: center;
-
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media (min-width: 600px) {
-    padding: 20px;
-  }
-
-  @media (min-width: 900px) {
-    padding: 24px;
-  }
-`;
+import { StyledCard } from "./PlantCard";
 
 export const ImageWrapper = styled.div`
   width: 100%;
