@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
+import FavoriteButton from "./FavoriteButton";
 
 export const CardContainer = styled.ul`
   display: grid;
@@ -22,8 +24,9 @@ export const CardContainer = styled.ul`
   }
 `;
 
-export const PlantCard = styled.li`
+export const StyledCard = styled.li`
   background: var(--color-background-white);
+  color: var(--color-light-dark);
   font-family: var(--font-family-body);
   padding: 16px;
   box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
@@ -54,3 +57,23 @@ export const PlantImage = styled(Image)`
     max-width: 400px; /* größere Bilder auf Desktop */
   }
 `;
+
+export default function PlantCard({ plant, isLiked, onToggle }) {
+  return (
+    <StyledCard>
+      <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
+      <Link href={`/plants/${plant._id}`}>
+        <PlantImage
+          src={plant.imageUrl}
+          alt={plant.name || "Plant Image"}
+          width={200}
+          height={200}
+          style={{ objectFit: "cover" }}
+          priority
+        />
+      </Link>
+      <h2>{plant.name}</h2>
+      <h3>{plant.botanicalName}</h3>
+    </StyledCard>
+  );
+}

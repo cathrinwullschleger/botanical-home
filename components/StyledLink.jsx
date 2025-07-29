@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import Link from "next/link";
 
-export const StyledButton = styled.button`
+export const StyledLink = styled(Link)`
   display: inline-block;
   justify-self: center;
   border: 1px solid black;
@@ -12,14 +13,11 @@ export const StyledButton = styled.button`
   width: auto;
   cursor: pointer;
   font-weight: 400;
+  color: var(--color-light-dark);
+  text-decoration: none;
 
   &:hover {
     background: var(--color-light-dark);
     color: var(--color-natural-white);
   }
-`;
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
 `;

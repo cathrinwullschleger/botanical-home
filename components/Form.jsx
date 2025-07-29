@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { StyledButton } from "@/components/StyledButton.js";
+import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
 
 const FormWrapper = styled.div`
   max-width: 500px;
@@ -74,6 +74,9 @@ const StyledSelect = styled.select`
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
 export default function Form({ onSubmit, defaultData }) {
+  const router = useRouter();
+  const { id } = router.query;
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -169,11 +172,19 @@ export default function Form({ onSubmit, defaultData }) {
           defaultValue={defaultData?.description}
           required
         ></textarea>
+        <ButtonWrapper>
+          <StyledButton type="submit">
+            {" "}
+            {defaultData ? "Update Plant" : "Add Plant"}
+          </StyledButton>
 
-        <StyledButton type="submit">
-          {" "}
-          {defaultData ? "Update Plant" : "Add Plant"}
-        </StyledButton>
+          <StyledButton
+            type="button"
+            onClick={() => router.push(defaultData ? `/plants/${id}` : `/`)}
+          >
+            Cancel
+          </StyledButton>
+        </ButtonWrapper>
       </StyledForm>
     </FormWrapper>
   );
