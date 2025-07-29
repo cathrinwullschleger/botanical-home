@@ -15,7 +15,7 @@ const HeaderWrapper = styled.header`
 `;
 const Title = styled.h1`
   font-family: var(--font-family-h);
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin: 0;
   color: var(--color-light-dark);
   margin-bottom: 1rem;

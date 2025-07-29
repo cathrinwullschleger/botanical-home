@@ -34,7 +34,7 @@ const InlineWrapper = styled.div`
   }
 `;
 
-export default function DetailsPage(isLiked) {
+export default function DetailsPage({ likedPlants, toggleLikedPlant }) {
   const router = useRouter();
   const { id } = router.query;
   const [showConfirm, setShowConfirm] = useState(false);
@@ -72,6 +72,8 @@ export default function DetailsPage(isLiked) {
           onDelete={handleDelete}
           showConfirm={showConfirm}
           setShowConfirm={setShowConfirm}
+          isLiked={likedPlants.includes(plant._id)}
+          onToggle={() => toggleLikedPlant(plant._id)}
         />
       </DetailPageWrapper>
     </>

@@ -25,6 +25,7 @@ export const CardContainer = styled.ul`
 `;
 
 export const StyledCard = styled.li`
+  position: relative;
   background: var(--color-background-white);
   color: var(--color-light-dark);
   font-family: var(--font-family-body);

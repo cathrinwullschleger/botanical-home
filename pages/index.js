@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import PlantCard, { CardContainer } from "@/components/PlantCard";
+import Introduction from "@/components/Introduction";
 
 export default function HomePage({ likedPlants, toggleLikedPlant }) {
   const { data: plants, error, isLoading } = useSWR("/api/plants");
@@ -14,15 +15,18 @@ export default function HomePage({ likedPlants, toggleLikedPlant }) {
   }
 
   return (
-    <CardContainer>
-      {plants.map((plant) => (
-        <PlantCard
-          key={plant._id}
-          plant={plant}
-          isLiked={likedPlants.includes(plant._id)}
-          onToggle={() => toggleLikedPlant(plant._id)}
-        />
-      ))}
-    </CardContainer>
+    <>
+      <Introduction />
+      <CardContainer>
+        {plants.map((plant) => (
+          <PlantCard
+            key={plant._id}
+            plant={plant}
+            isLiked={likedPlants.includes(plant._id)}
+            onToggle={() => toggleLikedPlant(plant._id)}
+          />
+        ))}
+      </CardContainer>
+    </>
   );
 }

@@ -3,7 +3,7 @@ import Header from "./Header";
 import styled from "styled-components";
 
 const Main = styled.main`
-  padding-top: 10rem; /* Höhe Header */
+  padding-top: 9rem; /* Höhe Header */
 `;
 
 export default function Layout({ children }) {
