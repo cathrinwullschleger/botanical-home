@@ -177,19 +177,13 @@ export default function Form({ onSubmit, defaultData }) {
             {" "}
             {defaultData ? "Update Plant" : "Add Plant"}
           </StyledButton>
-          {defaultData && (
-            <StyledButton
-              type="button"
-              onClick={() => router.push(`/plants/${id}`)}
-            >
-              Cancel
-            </StyledButton>
-          )}
-          {!defaultData && (
-            <StyledButton type="button" onClick={() => router.push(`/`)}>
-              Cancel
-            </StyledButton>
-          )}
+
+          <StyledButton
+            type="button"
+            onClick={() => router.push(defaultData ? `/plants/${id}` : `/`)}
+          >
+            Cancel
+          </StyledButton>
         </ButtonWrapper>
       </StyledForm>
     </FormWrapper>

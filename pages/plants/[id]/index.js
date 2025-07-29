@@ -34,7 +34,7 @@ const InlineWrapper = styled.div`
   }
 `;
 
-export default function DetailsPage() {
+export default function DetailsPage(isLiked) {
   const router = useRouter();
   const { id } = router.query;
   const [showConfirm, setShowConfirm] = useState(false);
@@ -67,6 +67,7 @@ export default function DetailsPage() {
 
       <DetailPageWrapper>
         <PlantDetailCard
+          id={id}
           plant={plant}
           onDelete={handleDelete}
           showConfirm={showConfirm}
