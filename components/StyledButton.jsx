@@ -17,6 +17,14 @@ export const StyledButton = styled.button`
     background: var(--color-light-dark);
     color: var(--color-natural-white);
   }
+
+  ${({ active }) =>
+    active &&
+    `
+    
+    background: var(--color-light-dark);
+    color: var(--color-natural-white);
+  `}
 `;
 
 export const ButtonWrapper = styled.div`
