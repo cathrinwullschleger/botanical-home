@@ -7,7 +7,7 @@ const HeartButton = styled.button`
 
   background-color: transparent;
   border: none;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
 `;
 
 export default function FavoriteButton({ isLiked, onToggle }) {
