@@ -31,6 +31,7 @@ export default createGlobalStyle`
     font-family: var(--font-family-body);
     color: var(--color-light-dark);
     font-weight: 400;
+     overflow-x: hidden;
   }
 
 
@@ -50,6 +51,7 @@ h3 {
   font-family: var(--font-family-body);
     font-weight: 400;
     font-size: 1.2rem;
+    text-align: center;
     
 }
 p {

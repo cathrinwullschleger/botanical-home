@@ -6,22 +6,24 @@ const IntroWrapper = styled.div`
   align-items: center;
   gap: 2rem;
   margin-top: 0;
+  margin-bottom: 2rem;
   padding: 0 20px;
-
+  width: 100%;
   max-width: 1200px;
   flex-direction: column;
 
   @media (min-width: 600px) {
-    flex-direction: row;
+    flex-direction: column;
     padding: 0 40px;
-    gap: 5.5rem;
-    margin: 40px auto;
+    gap: 3rem;
+    margin: 20px auto 70px auto;
   }
 
   @media (min-width: 900px) {
     flex-direction: row;
     padding: 0 60px;
-    margin: 40px auto;
+    margin: 20px auto 70px auto;
+
     gap: 5.5rem;
   }
 `;

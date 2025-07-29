@@ -10,6 +10,7 @@ export const CardContainer = styled.ul`
 
   padding: 0 50px; /* mobil 16px Seitenabstand */
   margin: 40px auto;
+  width: 100%;
   max-width: 1200px;
   list-style: none;
 
@@ -19,7 +20,7 @@ export const CardContainer = styled.ul`
   }
 
   @media (min-width: 900px) {
-    grid-template-columns: repeat(3, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     padding: 0 60px; /* noch mehr Abstand Desktop */
   }
 `;
