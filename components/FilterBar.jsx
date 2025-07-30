@@ -2,52 +2,59 @@ import { StyledButton } from "./StyledButton";
 import styled from "styled-components";
 
 const FilterBarWrapper = styled.div`
-  display: grid;
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   margin: 40px auto;
   max-width: 1200px;
+  padding: 0 20px;
 
   @media (min-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 40px; /* größerer Abstand Tablet */
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    padding: 0 40px;
   }
 
   @media (min-width: 900px) {
-    grid-template-columns: ${({ showReset }) =>
-      showReset ? "repeat(4, 1fr)" : "repeat(3, 1fr)"};
-    padding: 0 60px; /* noch mehr Abstand Desktop */
+    flex-direction: row;
+    gap: 10rem;
+    justify-content: center;
+    padding: 0 60px;
   }
 `;
 
 export default function FilterBar({ activeFilter, onChange }) {
-  const showReset = activeFilter;
   return (
     <>
       <h3>Find the right plants for your room’s lighting conditions:</h3>
-      <FilterBarWrapper showReset={showReset}>
+      <FilterBarWrapper>
         <StyledButton
           active={activeFilter === "Full Sun"}
-          onClick={() => onChange("Full Sun")}
+          onClick={() =>
+            onChange(activeFilter === "Full Sun" ? null : "Full Sun")
+          }
         >
           Full Sun
         </StyledButton>
 
         <StyledButton
           active={activeFilter === "Partial Shade"}
-          onClick={() => onChange("Partial Shade")}
+          onClick={() =>
+            onChange(activeFilter === "Partial Shade" ? null : "Partial Shade")
+          }
         >
           Partial Shade
         </StyledButton>
 
         <StyledButton
           active={activeFilter === "Shade"}
-          onClick={() => onChange("Shade")}
+          onClick={() => onChange(activeFilter === "Shade" ? null : "Shade")}
         >
           Shade
         </StyledButton>
-        {showReset && (
-          <StyledButton onClick={() => onChange(null)}>All Plants</StyledButton>
-        )}
       </FilterBarWrapper>
     </>
   );
