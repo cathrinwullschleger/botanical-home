@@ -27,34 +27,20 @@ const FilterBarWrapper = styled.div`
 `;
 
 export default function FilterBar({ activeFilter, onChange }) {
+  const filterOptions = ["Full Sun", "Partial Shade", "Shade"];
   return (
     <>
       <h3>Find the right plants for your room’s lighting conditions:</h3>
       <FilterBarWrapper>
-        <StyledButton
-          active={activeFilter === "Full Sun"}
-          onClick={() =>
-            onChange(activeFilter === "Full Sun" ? null : "Full Sun")
-          }
-        >
-          Full Sun
-        </StyledButton>
-
-        <StyledButton
-          active={activeFilter === "Partial Shade"}
-          onClick={() =>
-            onChange(activeFilter === "Partial Shade" ? null : "Partial Shade")
-          }
-        >
-          Partial Shade
-        </StyledButton>
-
-        <StyledButton
-          active={activeFilter === "Shade"}
-          onClick={() => onChange(activeFilter === "Shade" ? null : "Shade")}
-        >
-          Shade
-        </StyledButton>
+        {filterOptions.map((option) => (
+          <StyledButton
+            key={option}
+            active={activeFilter === option}
+            onClick={() => onChange(activeFilter === option ? null : option)}
+          >
+            {option}
+          </StyledButton>
+        ))}
       </FilterBarWrapper>
     </>
   );
