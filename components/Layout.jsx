@@ -3,7 +3,8 @@ import Header from "./Header";
 import styled from "styled-components";
 
 const Main = styled.main`
-  padding-top: 9rem; /* Höhe Header */
+  padding: 11rem 0 2rem; /* Oben, Seiten, Unten */
+  margin: 0 auto; /* zentriert auf großen Bildschirmen */
 `;
 
 export default function Layout({ children }) {

@@ -42,10 +42,21 @@ const Introtext = styled.p`
   line-height: 2.5;
 `;
 
+const IntroImage = styled(Image)`
+  width: 100%; /* Bild füllt Kartenbreite */
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 12px;
+
+  @media (min-width: 900px) {
+    max-width: 450px; /* größere Bilder auf Desktop */
+  }
+`;
+
 export default function Introduction() {
   return (
     <IntroWrapper>
-      <Image
+      <IntroImage
         src="/intro.jpeg"
         alt="Intro Picture"
         width={450}

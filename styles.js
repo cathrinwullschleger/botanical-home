@@ -23,6 +23,7 @@ export default createGlobalStyle`
 --color-shadow-black-rgba: rgba(0, 0, 0, 0.1);
   --color-light-grey: #808080;
   --color-background-white: #FAFAFA;
+  
  
 }
   body {
@@ -65,5 +66,13 @@ p {
     font-family: var(--font-family-body);
     font-weight: 400;
   }
+
+button,
+a,
+input,
+textarea,
+select {
+  color: var(--color-light-dark);
+}
 
 `;
