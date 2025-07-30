@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
 
 const FormWrapper = styled.div`
-  max-width: 500px;
+  max-width: 700px;
+  width: 100%;
+  padding: 0 16px;
   margin: 40px auto;
   border-radius: 0.12rem;
-  padding: 40px;
   background: var(--color-background-white);
   box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
 
@@ -24,7 +25,7 @@ const FormWrapper = styled.div`
 const StyledForm = styled.form`
   display: grid;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 0;
   font-family: var(--font-family-body);
 
   label {
@@ -175,7 +176,7 @@ export default function Form({ onSubmit, defaultData }) {
         <ButtonWrapper>
           <StyledButton type="submit">
             {" "}
-            {defaultData ? "Update Plant" : "Add Plant"}
+            {defaultData ? "Safe changes" : "Add Plant"}
           </StyledButton>
 
           <StyledButton

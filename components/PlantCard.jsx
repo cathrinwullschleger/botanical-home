@@ -8,7 +8,7 @@ export const CardContainer = styled.ul`
   grid-template-columns: 1fr;
   gap: 16px;
 
-  padding: 0 50px; /* mobil 16px Seitenabstand */
+  padding: 0 16px; /* mobil 16px Seitenabstand */
   margin: 40px auto;
   width: 100%;
   max-width: 1200px;
