@@ -41,7 +41,7 @@ export default createGlobalStyle`
     color: var(--color-light-dark);
     font-weight: 400;
     margin: 0;
-    margin-top:2rem;
+    margin-top:1rem;
     font-size: 1.4rem;
     line-height: 1.2;
       text-align: center;
