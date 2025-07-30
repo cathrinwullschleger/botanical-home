@@ -63,7 +63,6 @@ export const PlantImage = styled(Image)`
 export default function PlantCard({ plant, isLiked, onToggle }) {
   return (
     <StyledCard>
-      <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
       <Link href={`/plants/${plant._id}`}>
         <PlantImage
           src={plant.imageUrl}
@@ -74,6 +73,7 @@ export default function PlantCard({ plant, isLiked, onToggle }) {
           priority
         />
       </Link>
+      <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
       <h2>{plant.name}</h2>
       <h3>{plant.botanicalName}</h3>
     </StyledCard>

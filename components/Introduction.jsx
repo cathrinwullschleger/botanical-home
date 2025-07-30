@@ -68,9 +68,9 @@ export default function Introduction() {
         community for plant lovers! Here you’ll discover all kinds of
         houseplants, learn what kind of light and water they need, and find out
         the best times to fertilize them. Got a plant that’s not listed yet? Add
-        it yourself and share your knowledge with others! You can also create
-        your own plant collection and see which green beauties might still be
-        missing from your home. Get inspired and turn your space into a
+        it yourself and share your knowledge with others! You can also add
+        Plants to your own plant collection and see which green beauties might
+        still be missing from your home. Get inspired and turn your space into a
         botanical sanctuary!
       </Introtext>
     </IntroWrapper>

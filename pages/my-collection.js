@@ -3,6 +3,7 @@ import { BackLink } from "@/components/BackLink";
 import { StyledLink } from "@/components/StyledLink";
 import useSWR from "swr";
 import styled from "styled-components";
+import { ButtonWrapper } from "@/components/StyledButton";
 
 const EmptyStateWrapper = styled.div`
   display: flex;
@@ -32,7 +33,10 @@ export default function MyCollection({ likedPlants, toggleLikedPlant }) {
           <p>
             Your collection is empty. Add your first Plant and start growing!
           </p>
-          <StyledLink href="/">All Plants</StyledLink>
+          <ButtonWrapper>
+            <StyledLink href="/">All Plants</StyledLink>
+            <StyledLink href="/add">Add a new Plant</StyledLink>
+          </ButtonWrapper>
         </EmptyStateWrapper>
       ) : (
         <>

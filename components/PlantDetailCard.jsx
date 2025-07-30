@@ -56,11 +56,11 @@ export default function PlantDetailCard({
         <p>{plant.fertiliserSeason.join(", ")}</p>
       </InlineWrapper>
       <InlineWrapper>
-        <h4>Water Needs: </h4>
+        <h4>Water Need: </h4>
         <p>{plant.waterNeed}</p>
       </InlineWrapper>
       <InlineWrapper>
-        <h4>Light Needs: </h4>
+        <h4>Light Need: </h4>
         <p>{plant.lightNeed}</p>
       </InlineWrapper>
       <ButtonWrapper>

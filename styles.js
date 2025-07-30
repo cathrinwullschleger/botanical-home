@@ -41,7 +41,7 @@ export default createGlobalStyle`
     color: var(--color-light-dark);
     font-weight: 400;
     margin: 0;
-    margin-top:2rem;
+    margin-top:1rem;
     font-size: 1.4rem;
     line-height: 1.2;
       text-align: center;
@@ -53,6 +53,8 @@ h3 {
     font-weight: 400;
     font-size: 1.2rem;
     text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
     
 }
 p {
