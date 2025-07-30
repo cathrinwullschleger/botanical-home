@@ -53,6 +53,8 @@ h3 {
     font-weight: 400;
     font-size: 1.2rem;
     text-align: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
     
 }
 p {

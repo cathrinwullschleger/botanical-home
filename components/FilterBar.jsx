@@ -6,7 +6,7 @@ const FilterBarWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin: 40px auto;
   max-width: 1200px;
   padding: 0 20px;
@@ -35,7 +35,7 @@ export default function FilterBar({ activeFilter, onChange }) {
         {filterOptions.map((option) => (
           <StyledButton
             key={option}
-            active={activeFilter === option}
+            $active={activeFilter === option}
             onClick={() => onChange(activeFilter === option ? null : option)}
           >
             {option}

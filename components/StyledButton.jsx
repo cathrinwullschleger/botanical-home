@@ -18,13 +18,12 @@ export const StyledButton = styled.button`
     color: var(--color-natural-white);
   }
 
-  ${({ active }) =>
-    active &&
+  ${({ $active }) =>
+    $active &&
     `
-    
-    background: var(--color-light-dark);
-    color: var(--color-natural-white);
-  `}
+      background: var(--color-light-dark);
+      color: var(--color-natural-white);
+    `}
 `;
 
 export const ButtonWrapper = styled.div`
