@@ -15,13 +15,15 @@ export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
       });
       const newPlant = await res.json(); // newPlant to have id (created in api)
 
-      if (addToFavorites) {
-        toggleLikedPlant(newPlant._id); // if addToFavorite is true -> add Favorite(function in_app)
-      }
       if (!res.ok) {
         throw new Error("Failed to add plant");
       }
-      router.push("/");
+      if (addToFavorites) {
+        toggleLikedPlant(newPlant._id);
+        router.push("/my-collection");
+      } else {
+        router.push("/");
+      }
     } catch (error) {
       console.error(error);
       alert("Error adding plant");
