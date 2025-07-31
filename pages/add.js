@@ -7,8 +7,7 @@ export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
 
   async function addPlant(plant) {
     try {
-      const { addToFavorites, ...cleanData } = plant;
-      console.log("addToFavorites in addPlant:", addToFavorites); // info of addToFavorites (but not add to the DB, just localstorage (togglelikedplant in_app)
+      const { addToFavorites, ...cleanData } = plant; // info of addToFavorites (but not add to the DB, just localstorage (togglelikedplant in_app)
       const res = await fetch("/api/plants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
