@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { BackLink } from "@/components/BackLink";
 import Form from "@/components/Form";
 
-export default function EditPage() {
+export default function EditPage({ likedPlants, toggleLikedPlant }) {
   const router = useRouter();
   const { id } = router.query;
   const {
@@ -24,6 +24,16 @@ export default function EditPage() {
       if (!response.ok) {
         throw new Error("Failed to edit plant");
       }
+
+      if (plant.addToFavorites) {
+        if (!likedPlants.includes(id)) {
+          toggleLikedPlant(id); // add to likedPlants
+        }
+      } else {
+        if (likedPlants.includes(id)) {
+          toggleLikedPlant(id); // remove from likedPlant
+        }
+      }
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -37,7 +47,11 @@ export default function EditPage() {
     <>
       <BackLink href="/">←</BackLink>
       <h1>Edit Plant</h1>
-      <Form onSubmit={editPlant} defaultData={plant} />
+      <Form
+        onSubmit={editPlant}
+        defaultData={plant}
+        likedPlants={likedPlants}
+      />
     </>
   );
 }

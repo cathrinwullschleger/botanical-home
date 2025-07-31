@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  display: inline-block;
-  justify-self: center;
   border: 1px solid black;
-  margin-top: 0.75rem;
+
   background: transparent;
   padding: 0.5em 1em;
   font-size: 1rem;
@@ -29,5 +27,7 @@ export const StyledButton = styled.button`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
+  margin-top: 1rem;
 `;

@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
+import { useState } from "react";
+import { StyledLink } from "./StyledLink";
 
 const FormWrapper = styled.div`
   max-width: 700px;
@@ -50,7 +52,7 @@ const StyledForm = styled.form`
   }
 `;
 
-const CheckboxGroup = styled.div`
+const StyledCheckbox = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -74,15 +76,17 @@ const StyledSelect = styled.select`
 `;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
-export default function Form({ onSubmit, defaultData }) {
+export default function Form({ onSubmit, defaultData, likedPlants }) {
   const router = useRouter();
   const { id } = router.query;
+  const [showHint, setShowHint] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     data.fertiliserSeason = formData.getAll("fertiliserSeason");
+    data.addToFavorites = formData.get("addToFavorites") === "on"; // als Favorite hinzufügen
 
     // Custom validation: at least one fertiliserSeason checkbox checked
     if (data.fertiliserSeason.length === 0) {
@@ -119,9 +123,21 @@ export default function Form({ onSubmit, defaultData }) {
           id="imageUrl"
           name="imageUrl"
           type="text"
+          onFocus={() => setShowHint(true)}
           defaultValue={defaultData?.imageUrl}
           required
         />
+        {showHint && (
+          <p>
+            Please enter a valid image URL starting with <code>http://</code> or{" "}
+            <code>https://</code>. Check out{" "}
+            <a href="https://unsplash.com/@feeypflanzen" target="_blank">
+              feeypflanzen
+            </a>{" "}
+            - she shares beautiful plant photos and has a huge variety of
+            plants.
+          </p>
+        )}
 
         <label htmlFor="waterNeed">Water Need</label>
         <StyledSelect
@@ -150,7 +166,7 @@ export default function Form({ onSubmit, defaultData }) {
         </StyledSelect>
 
         <label>Fertiliser Season</label>
-        <CheckboxGroup>
+        <StyledCheckbox>
           {fertiliserSeasons.map((season) => (
             <label key={season} style={{ marginRight: "1rem" }}>
               <input
@@ -162,7 +178,7 @@ export default function Form({ onSubmit, defaultData }) {
               {season}
             </label>
           ))}
-        </CheckboxGroup>
+        </StyledCheckbox>
 
         <label htmlFor="description">Description</label>
         <textarea
@@ -173,18 +189,24 @@ export default function Form({ onSubmit, defaultData }) {
           defaultValue={defaultData?.description}
           required
         ></textarea>
+        <StyledCheckbox>
+          <label htmlFor="addToFavorites">
+            Do you like to add this Plant to your Collection?
+          </label>
+          <input
+            type="checkbox"
+            name="addToFavorites"
+            defaultChecked={likedPlants.includes(defaultData?._id)}
+          />
+        </StyledCheckbox>
         <ButtonWrapper>
           <StyledButton type="submit">
             {" "}
             {defaultData ? "Safe changes" : "Add Plant"}
           </StyledButton>
-
-          <StyledButton
-            type="button"
-            onClick={() => router.push(defaultData ? `/plants/${id}` : `/`)}
-          >
+          <StyledLink href={defaultData ? `/plants/${id}` : `/`}>
             Cancel
-          </StyledButton>
+          </StyledLink>
         </ButtonWrapper>
       </StyledForm>
     </FormWrapper>

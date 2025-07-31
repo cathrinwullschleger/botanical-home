@@ -3,7 +3,6 @@ import PlantCard, { CardContainer } from "@/components/PlantCard";
 import Introduction from "@/components/Introduction";
 import FilterBar from "@/components/FilterBar";
 import { useState } from "react";
-import Link from "next/link";
 
 export default function HomePage({ likedPlants, toggleLikedPlant }) {
   const [activeFilter, setActiveFilter] = useState(null);
