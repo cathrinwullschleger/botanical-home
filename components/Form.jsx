@@ -194,6 +194,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             Do you like to add this Plant to your Collection?
           </label>
           <input
+            id="addToFavorites"
             type="checkbox"
             name="addToFavorites"
             defaultChecked={likedPlants.includes(defaultData?._id)}
