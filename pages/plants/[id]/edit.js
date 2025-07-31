@@ -29,12 +29,13 @@ export default function EditPage({ likedPlants, toggleLikedPlant }) {
         if (!likedPlants.includes(id)) {
           toggleLikedPlant(id); // add to likedPlants
         }
+        router.push("/my-collection");
       } else {
         if (likedPlants.includes(id)) {
           toggleLikedPlant(id); // remove from likedPlant
         }
+        router.push("/");
       }
-      router.push("/");
     } catch (error) {
       console.error(error);
       alert("Error updating plant");
