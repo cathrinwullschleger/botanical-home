@@ -74,7 +74,7 @@ const StyledSelect = styled.select`
 `;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
-export default function Form({ onSubmit, defaultData }) {
+export default function Form({ onSubmit, defaultData, likedPlants }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -83,6 +83,7 @@ export default function Form({ onSubmit, defaultData }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     data.fertiliserSeason = formData.getAll("fertiliserSeason");
+    data.addToFavorites = formData.get("addToFavorites") === "on"; // als Favorite hinzufügen
 
     // Custom validation: at least one fertiliserSeason checkbox checked
     if (data.fertiliserSeason.length === 0) {
@@ -173,12 +174,19 @@ export default function Form({ onSubmit, defaultData }) {
           defaultValue={defaultData?.description}
           required
         ></textarea>
+        <label htmlFor="addToFavorites">
+          Do you like to add this new Plant to your Collection?
+        </label>
+        <input
+          type="checkbox"
+          name="addToFavorites"
+          defaultChecked={likedPlants.includes(defaultData?._id)}
+        />
         <ButtonWrapper>
           <StyledButton type="submit">
             {" "}
             {defaultData ? "Safe changes" : "Add Plant"}
           </StyledButton>
-
           <StyledButton
             type="button"
             onClick={() => router.push(defaultData ? `/plants/${id}` : `/`)}
