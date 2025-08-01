@@ -25,6 +25,7 @@ export const InlineWrapper = styled.div`
     margin: 0;
   }
 `;
+
 export default function PlantDetailCard({
   plant,
   isLiked,
@@ -37,7 +38,6 @@ export default function PlantDetailCard({
   return (
     <StyledCard>
       <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
-
       <ImageWrapper>
         <Image
           src={plant.imageUrl}
@@ -47,7 +47,6 @@ export default function PlantDetailCard({
           priority
         />
       </ImageWrapper>
-
       <h2>{plant.name}</h2>
       <h3>{plant.botanicalName}</h3>
       <p>{plant.description}</p>

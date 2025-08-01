@@ -19,8 +19,8 @@ export const StyledButton = styled.button`
   ${({ $active }) =>
     $active &&
     `
-      background: var(--color-light-dark);
-      color: var(--color-natural-white);
+    text-decoration: underline;
+   
     `}
 `;
 
@@ -30,4 +30,5 @@ export const ButtonWrapper = styled.div`
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 `;

@@ -8,7 +8,7 @@ export const CardContainer = styled.ul`
   grid-template-columns: 1fr;
   gap: 16px;
 
-  padding: 0 16px; /* mobil 16px Seitenabstand */
+  padding: 0 16px;
   margin: 40px auto;
   width: 100%;
   max-width: 1200px;
@@ -16,13 +16,17 @@ export const CardContainer = styled.ul`
 
   @media (min-width: 600px) {
     grid-template-columns: repeat(2, minmax(320px, 1fr));
-    padding: 0 40px; /* größerer Abstand Tablet */
+    padding: 0 40px;
   }
 
   @media (min-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
-    padding: 0 60px; /* noch mehr Abstand Desktop */
+    padding: 0 60px;
   }
+`;
+export const CardLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
 `;
 
 export const StyledCard = styled.li`
@@ -47,23 +51,29 @@ export const StyledCard = styled.li`
   @media (min-width: 900px) {
     padding: 24px;
   }
+
+  Link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+  }
 `;
 
 export const PlantImage = styled(Image)`
-  width: 100%; /* Bild füllt Kartenbreite */
-  max-width: 320px; /* max Breite auf Tablet */
+  width: 100%;
   height: auto;
   margin-bottom: 12px;
 
   @media (min-width: 900px) {
-    max-width: 400px; /* größere Bilder auf Desktop */
+    width: 100%;
   }
 `;
 
 export default function PlantCard({ plant, isLiked, onToggle }) {
   return (
     <StyledCard>
-      <Link href={`/plants/${plant._id}`}>
+      <CardLink href={`/plants/${plant._id}`}>
         <PlantImage
           src={plant.imageUrl}
           alt={plant.name || "Plant Image"}
@@ -72,10 +82,11 @@ export default function PlantCard({ plant, isLiked, onToggle }) {
           style={{ objectFit: "cover" }}
           priority
         />
-      </Link>
-      <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
-      <h2>{plant.name}</h2>
-      <h3>{plant.botanicalName}</h3>
+
+        <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
+        <h2>{plant.name}</h2>
+        <h3>{plant.botanicalName}</h3>
+      </CardLink>
     </StyledCard>
   );
 }

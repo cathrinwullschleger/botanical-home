@@ -22,7 +22,7 @@ export default createGlobalStyle`
   --color-natural-white: #F5F5F5;
 --color-shadow-black-rgba: rgba(0, 0, 0, 0.1);
   --color-light-grey: #808080;
-  --color-background-white: #FAFAFA;
+  --color-background-white: #FFFF;
   
  
 }
