@@ -10,29 +10,6 @@ const DetailPageWrapper = styled.div`
   margin: 40px auto; /* zentriert und oben Abstand */
   padding: 0 16px; /* horizontaler Abstand mobil */
 `;
-const ImageWrapper = styled.div`
-  width: 100%;
-  max-width: 400px;
-  aspect-ratio: 1 / 1; /* quadratisches Verhältnis */
-  margin: 0 auto 30px;
-  position: relative;
-  overflow: hidden;
-
-  @media (max-width: 600px) {
-    max-width: 100%; /* mobil volle Breite nutzen */
-  }
-`;
-const InlineWrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 1rem 0;
-
-  h4,
-  p {
-    margin: 0;
-  }
-`;
 
 export default function DetailsPage({ likedPlants, toggleLikedPlant }) {
   const router = useRouter();
@@ -58,7 +35,7 @@ export default function DetailsPage({ likedPlants, toggleLikedPlant }) {
       return;
     }
 
-    router.push("/");
+    router.push("/plants");
   }
 
   return (

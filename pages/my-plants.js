@@ -34,7 +34,7 @@ export default function MyCollection({ likedPlants, toggleLikedPlant }) {
             Your collection is empty. Add your first Plant and start growing!
           </p>
           <ButtonWrapper>
-            <StyledLink href="/">All Plants</StyledLink>
+            <StyledLink href="/plants">All Plants</StyledLink>
             <StyledLink href="/add">Add a new Plant</StyledLink>
           </ButtonWrapper>
         </EmptyStateWrapper>

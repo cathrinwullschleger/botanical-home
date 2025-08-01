@@ -20,9 +20,9 @@ export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
       }
       if (addToFavorites) {
         toggleLikedPlant(newPlant._id);
-        router.push("/my-collection");
+        router.push("/my-plants");
       } else {
-        router.push("/");
+        router.push("/plants");
       }
     } catch (error) {
       console.error(error);

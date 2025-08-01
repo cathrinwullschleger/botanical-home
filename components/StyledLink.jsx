@@ -3,11 +3,11 @@ import Link from "next/link";
 
 export const StyledAnchor = styled.a`
   font-family: var(--font-family-body);
-  display: block; /* wichtig für margin auto */
-  /* margin: 1rem auto 0; zentriert, mit etwas Abstand oben */
+  display: flex;
+  justify-content: center;
   border: 1px solid black;
   background: transparent;
-  padding: 0.5em 1em;
+  padding: 0.5em 1rem;
   font-size: 1rem;
   border-radius: 0.12rem;
   width: fit-content;

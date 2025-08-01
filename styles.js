@@ -36,22 +36,32 @@ export default createGlobalStyle`
   }
 
 
-  h1, h2 {
+  h1 {
     font-family: var(--font-family-h);
     color: var(--color-light-dark);
     font-weight: 400;
-    margin: 0;
-    margin-top:1rem;
+    margin-bottom: 5rem;
+    margin-top: 1rem;
     font-size: 1.4rem;
     line-height: 1.2;
       text-align: center;
   }
 
+  h2 {
+    font-family: var(--font-family-h);
+    color: var(--color-light-dark);
+    font-weight: 400;
+
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    line-height: 1.2;
+      text-align: center;
+  }
 
 h3 {
   font-family: var(--font-family-body);
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
     margin-left: 1rem;
     margin-right: 1rem;

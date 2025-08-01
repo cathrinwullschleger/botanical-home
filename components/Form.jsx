@@ -205,7 +205,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             {" "}
             {defaultData ? "Safe changes" : "Add Plant"}
           </StyledButton>
-          <StyledLink href={defaultData ? `/plants/${id}` : `/`}>
+          <StyledLink href={defaultData ? `/plants/${id}` : `/plants`}>
             Cancel
           </StyledLink>
         </ButtonWrapper>

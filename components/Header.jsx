@@ -31,6 +31,10 @@ const Nav = styled.nav`
 const Dot = styled.span`
   font-size: 1.25rem;
   color: var(--color-light-dark);
+  display: none;
+  @media (min-width: 900px) {
+    display: inline;
+  }
 `;
 const NavLink = styled(Link)`
   position: relative;
@@ -67,12 +71,16 @@ export default function Header() {
           Home
         </NavLink>
         <Dot>•</Dot>
+        <NavLink href="/plants" $active={pathname === "/plants"}>
+          Plants{" "}
+        </NavLink>
+        <Dot>•</Dot>
         <NavLink href="/add" $active={pathname === "/add"}>
           Add Plant
         </NavLink>
         <Dot>•</Dot>
-        <NavLink href="/my-collection" $active={pathname === "/my-collection"}>
-          My Collection
+        <NavLink href="/my-plants" $active={pathname === "/my-plants"}>
+          My Plants
         </NavLink>
       </Nav>
     </HeaderWrapper>
