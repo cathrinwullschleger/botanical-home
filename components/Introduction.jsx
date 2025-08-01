@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import Image from "next/image";
+import useSWR from "swr";
+import Link from "next/link";
+import { ButtonWrapper } from "./StyledButton";
+import { StyledLink } from "./StyledLink";
 
 const IntroWrapper = styled.div`
   display: flex;
@@ -27,11 +31,15 @@ const IntroWrapper = styled.div`
     gap: 5.5rem;
   }
 `;
-
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
 const HighlightText = styled.span`
   color: var(--color-light-dark);
   font-family: var(--font-family-h);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 `;
 const Introtext = styled.p`
   font-family: var(--font-family-body);
@@ -42,19 +50,29 @@ const Introtext = styled.p`
   flex: 1;
   line-height: 2.5;
 `;
-
+const HighlightNumber = styled.span`
+  color: var(--color-light-dark);
+  font-family: var(--font-family-h);
+  font-size: 2rem;
+`;
 const IntroImage = styled(Image)`
-  width: 100%; /* Bild füllt Kartenbreite */
-  max-width: 300px;
+  width: 100%;
+  max-width: 200px;
   height: auto;
-  margin-bottom: 12px;
 
   @media (min-width: 900px) {
-    max-width: 450px; /* größere Bilder auf Desktop */
+    max-width: 450px;
   }
+`;
+const Counter = styled.p`
+  font-family: var(--font-family-body);
+  color: var(--color-light-dark);
+  font-weight: 400;
+  text-align: center;
 `;
 
 export default function Introduction() {
+  const { data: plants } = useSWR("/api/plants");
   return (
     <IntroWrapper>
       <IntroImage
@@ -64,16 +82,28 @@ export default function Introduction() {
         height={550}
         objectFit="cover"
       />
-      <Introtext>
-        Welcome to <HighlightText>Botanical Home</HighlightText> – your green
-        community for plant lovers! Here you’ll discover all kinds of
-        houseplants, learn what kind of light and water they need, and find out
-        the best times to fertilize them. Got a plant that’s not listed yet? Add
-        it yourself and share your knowledge with others! You can also add
-        Plants to your own plant collection and see which green beauties might
-        still be missing from your home. Get inspired and turn your space into a
-        botanical sanctuary!
-      </Introtext>
+      <TextWrapper>
+        <Introtext>
+          Welcome to <HighlightText>Botanical Home</HighlightText> – your green
+          community for plant lovers! Here you’ll discover all kinds of
+          houseplants, learn what kind of light and water they need, and find
+          out the best times to fertilize them. Got a plant that’s not listed
+          yet? Add it yourself and share your knowledge with others! You can
+          also add Plants to your own plant collection and see which green
+          beauties might still be missing from your home. Get inspired and turn
+          your space into a botanical sanctuary!{" "}
+        </Introtext>
+        <br />
+        <br />
+        <Counter>
+          Currently, we have{" "}
+          <HighlightNumber> {plants ? plants.length : 0}</HighlightNumber>{" "}
+          Plants listed.{" "}
+        </Counter>
+        <ButtonWrapper>
+          <StyledLink href="/plants">Dive into the Plant Collection</StyledLink>
+        </ButtonWrapper>
+      </TextWrapper>
     </IntroWrapper>
   );
 }
