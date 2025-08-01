@@ -24,6 +24,10 @@ export const CardContainer = styled.ul`
     padding: 0 60px;
   }
 `;
+export const CardLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 export const StyledCard = styled.li`
   position: relative;
@@ -47,6 +51,13 @@ export const StyledCard = styled.li`
   @media (min-width: 900px) {
     padding: 24px;
   }
+
+  Link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+  }
 `;
 
 export const PlantImage = styled(Image)`
@@ -62,7 +73,7 @@ export const PlantImage = styled(Image)`
 export default function PlantCard({ plant, isLiked, onToggle }) {
   return (
     <StyledCard>
-      <Link href={`/plants/${plant._id}`}>
+      <CardLink href={`/plants/${plant._id}`}>
         <PlantImage
           src={plant.imageUrl}
           alt={plant.name || "Plant Image"}
@@ -71,10 +82,11 @@ export default function PlantCard({ plant, isLiked, onToggle }) {
           style={{ objectFit: "cover" }}
           priority
         />
-      </Link>
-      <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
-      <h2>{plant.name}</h2>
-      <h3>{plant.botanicalName}</h3>
+
+        <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
+        <h2>{plant.name}</h2>
+        <h3>{plant.botanicalName}</h3>
+      </CardLink>
     </StyledCard>
   );
 }
