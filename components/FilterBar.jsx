@@ -1,4 +1,3 @@
-import { StyledButton } from "./StyledButton";
 import styled from "styled-components";
 
 const FilterBarWrapper = styled.div`
@@ -26,6 +25,32 @@ const FilterBarWrapper = styled.div`
   }
 `;
 
+export const FilterButton = styled.button`
+  border: 1px solid black;
+
+  background: transparent;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border-radius: 0.12rem;
+  width: auto;
+  cursor: pointer;
+  font-weight: 400;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  ${({ $active }) =>
+    $active &&
+    `
+
+    background: var(--color-light-dark);
+    color: var(--color-natural-white);
+    
+   
+    `}
+`;
+
 export default function FilterBar({ activeFilter, onChange }) {
   const filterOptions = ["Full Sun", "Partial Shade", "Shade"];
   return (
@@ -33,13 +58,13 @@ export default function FilterBar({ activeFilter, onChange }) {
       <h3>Find the right plants for your room’s lighting conditions:</h3>
       <FilterBarWrapper>
         {filterOptions.map((option) => (
-          <StyledButton
+          <FilterButton
             key={option}
             $active={activeFilter === option}
             onClick={() => onChange(activeFilter === option ? null : option)}
           >
             {option}
-          </StyledButton>
+          </FilterButton>
         ))}
       </FilterBarWrapper>
     </>

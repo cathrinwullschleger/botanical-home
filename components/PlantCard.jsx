@@ -8,7 +8,7 @@ export const CardContainer = styled.ul`
   grid-template-columns: 1fr;
   gap: 16px;
 
-  padding: 0 16px; /* mobil 16px Seitenabstand */
+  padding: 0 16px;
   margin: 40px auto;
   width: 100%;
   max-width: 1200px;
@@ -16,12 +16,12 @@ export const CardContainer = styled.ul`
 
   @media (min-width: 600px) {
     grid-template-columns: repeat(2, minmax(320px, 1fr));
-    padding: 0 40px; /* größerer Abstand Tablet */
+    padding: 0 40px;
   }
 
   @media (min-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
-    padding: 0 60px; /* noch mehr Abstand Desktop */
+    padding: 0 60px;
   }
 `;
 
@@ -50,13 +50,12 @@ export const StyledCard = styled.li`
 `;
 
 export const PlantImage = styled(Image)`
-  width: 100%; /* Bild füllt Kartenbreite */
-  max-width: 320px; /* max Breite auf Tablet */
+  width: 100%;
   height: auto;
   margin-bottom: 12px;
 
   @media (min-width: 900px) {
-    max-width: 400px; /* größere Bilder auf Desktop */
+    width: 100%;
   }
 `;
 

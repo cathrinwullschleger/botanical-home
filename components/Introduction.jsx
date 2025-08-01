@@ -37,7 +37,8 @@ const Introtext = styled.p`
   font-family: var(--font-family-body);
   color: var(--color-light-dark);
   font-weight: 400;
-  text-align: center;
+  hyphens: auto;
+  text-align: justify;
   flex: 1;
   line-height: 2.5;
 `;

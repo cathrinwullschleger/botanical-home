@@ -4,6 +4,7 @@ import FavoriteButton from "./FavoriteButton";
 import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
 import { StyledLink } from "./StyledLink";
 import { StyledCard } from "./PlantCard";
+import { useState } from "react";
 
 export const ImageWrapper = styled.div`
   width: 100%;
@@ -25,6 +26,7 @@ export const InlineWrapper = styled.div`
     margin: 0;
   }
 `;
+
 export default function PlantDetailCard({
   plant,
   isLiked,
@@ -34,10 +36,16 @@ export default function PlantDetailCard({
   setShowConfirm,
   onDelete,
 }) {
+  const [copyMessage, setCopyMessage] = useState(false);
+
+  async function CopyToClipboard(url) {
+    await navigator.clipboard.writeText(url);
+    setCopyMessage(true);
+  }
+
   return (
     <StyledCard>
       <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
-
       <ImageWrapper>
         <Image
           src={plant.imageUrl}
@@ -47,7 +55,6 @@ export default function PlantDetailCard({
           priority
         />
       </ImageWrapper>
-
       <h2>{plant.name}</h2>
       <h3>{plant.botanicalName}</h3>
       <p>{plant.description}</p>
@@ -85,6 +92,21 @@ export default function PlantDetailCard({
           </ButtonWrapper>
         </div>
       )}
+      <StyledButton
+        onClick={() => {
+          CopyToClipboard(`https://botanical-home.vercel.app/plants/${id}`);
+          setCopyMessage(true);
+          setTimeout(() => {
+            setCopyMessage(false);
+          }, 3000);
+        }}
+        type="button"
+        title="copy url"
+        className="button"
+      >
+        Share this Plant with your friends
+      </StyledButton>{" "}
+      {copyMessage && <p> Link of the Plant is copied!</p>}
     </StyledCard>
   );
 }
