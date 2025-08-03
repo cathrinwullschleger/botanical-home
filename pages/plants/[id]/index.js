@@ -40,7 +40,7 @@ export default function DetailsPage({ likedPlants, toggleLikedPlant }) {
 
   return (
     <>
-      <BackLink href="/">← </BackLink>
+      <BackLink href="/plants">← </BackLink>
 
       <DetailPageWrapper>
         <PlantDetailCard
