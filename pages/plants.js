@@ -25,7 +25,7 @@ export default function PlantsPage({ likedPlants, toggleLikedPlant }) {
 
   return (
     <>
-      <h1>My Collection</h1>
+      <h1>Plant Collection</h1>
       <FilterBar activeFilter={activeFilter} onChange={setActiveFilter} />
       <CardContainer>
         {filteredPlants.map((plant) => (
