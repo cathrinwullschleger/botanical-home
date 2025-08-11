@@ -9,6 +9,7 @@ import SearchPlant from "@/components/SearchPlant";
 import SearchResults from "@/components/SearchResults";
 import { SearchWrapper } from "@/components/SearchWrapper";
 import { useEffect } from "react";
+import { PlantPageHeader } from "@/components/PlantsPageHeader";
 const EmptyStateWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -56,14 +57,16 @@ export default function MyCollection({
       ) : (
         <>
           <BackLink href="/">←</BackLink>
-          <h1>My Collection</h1>
-          <SearchWrapper>
-            <SearchPlant
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-            />
-            <SearchResults searchResults={searchResults} />
-          </SearchWrapper>
+          <PlantPageHeader>
+            <h1>My Collection</h1>
+            <SearchWrapper>
+              <SearchPlant
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
+              <SearchResults searchResults={searchResults} />
+            </SearchWrapper>
+          </PlantPageHeader>
           <CardContainer>
             {favoritePlants.map((plant) => (
               <PlantCard

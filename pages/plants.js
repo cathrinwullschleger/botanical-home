@@ -7,6 +7,7 @@ import { useState } from "react";
 import getSearchResults from "@/utils/searchFilter";
 import { SearchWrapper } from "@/components/SearchWrapper";
 import { useEffect } from "react";
+import { PlantPageHeader } from "@/components/PlantsPageHeader";
 
 export default function PlantsPage({
   likedPlants,
@@ -17,9 +18,11 @@ export default function PlantsPage({
   const [activeFilter, setActiveFilter] = useState(null);
 
   const { data: plants, error, isLoading } = useSWR("/api/plants");
+
   useEffect(() => {
     setSearchQuery("");
   }, [setSearchQuery]);
+
   const searchResults = getSearchResults(plants, searchQuery);
 
   const filteredPlants = activeFilter
@@ -38,14 +41,16 @@ export default function PlantsPage({
 
   return (
     <>
-      <h1>Plant Collection</h1>
-      <SearchWrapper>
-        <SearchPlant
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
-        <SearchResults searchResults={searchResults} />
-      </SearchWrapper>
+      <PlantPageHeader>
+        <h1>Plant Collection</h1>
+        <SearchWrapper>
+          <SearchPlant
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          <SearchResults searchResults={searchResults} />
+        </SearchWrapper>
+      </PlantPageHeader>
       <FilterBar activeFilter={activeFilter} onChange={setActiveFilter} />
       <CardContainer>
         {filteredPlants.map((plant) => (

@@ -6,10 +6,9 @@ export const SearchWrapper = styled.div`
   align-items: center;
   font-family: var(--font-family-body);
   gap: 0.7rem;
-  padding: 16px;
-  margin: 40px auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
+  margin-top: 1rem;
 
   @media (min-width: 600px) {
     align-items: flex-end;

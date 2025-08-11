@@ -1,9 +1,10 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-const ResultListItem = styled.li``;
 const ResultList = styled.ul`
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -11,6 +12,7 @@ const ResultList = styled.ul`
 
 const ResultLink = styled(Link)`
   text-decoration: none;
+
   color: inherit;
   &:hover {
     text-decoration: underline;
@@ -22,11 +24,11 @@ export default function SearchResults({ searchResults }) {
     <>
       <ResultList>
         {searchResults.map((plant) => (
-          <ResultListItem key={plant._id}>
+          <li key={plant._id}>
             <ResultLink href={`/plants/${plant._id}`}>
               {plant.name} ({plant.botanicalName}){" "}
             </ResultLink>
-          </ResultListItem>
+          </li>
         ))}
       </ResultList>
     </>
