@@ -7,6 +7,7 @@ export default function App({ Component, pageProps }) {
   const [likedPlants, setLikedPlants] = useLocalStorageState("likedPlants", {
     defaultValue: [],
   });
+  const [searchQuery, setSearchQuery] = useState(null);
 
   function toggleLikedPlant(id) {
     setLikedPlants(
@@ -36,6 +37,8 @@ export default function App({ Component, pageProps }) {
               {...pageProps}
               likedPlants={likedPlants}
               toggleLikedPlant={toggleLikedPlant}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
             />
           </Layout>
         </div>
