@@ -4,7 +4,7 @@ import SearchPlant from "@/components/SearchPlant";
 import SearchResults from "@/components/SearchResults";
 import FilterBar from "@/components/FilterBar";
 import { useState } from "react";
-import { getSearchResults } from "@/utils/searchFilter";
+import getSearchResults from "@/utils/searchFilter";
 
 export default function PlantsPage({
   likedPlants,

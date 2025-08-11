@@ -2,6 +2,7 @@ import GlobalStyle, { mulish, italiana } from "../styles";
 import { SWRConfig } from "swr";
 import Layout from "@/components/Layout";
 import useLocalStorageState from "use-local-storage-state";
+import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [likedPlants, setLikedPlants] = useLocalStorageState("likedPlants", {
