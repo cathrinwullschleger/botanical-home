@@ -42,7 +42,7 @@ export default createGlobalStyle`
     font-weight: 400;
     margin-bottom: 5rem;
     margin-top: 1rem;
-    font-size: 1.4rem;
+    font-size:2rem;
     line-height: 1.2;
       text-align: center;
   }

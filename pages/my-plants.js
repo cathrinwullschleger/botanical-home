@@ -7,7 +7,8 @@ import { ButtonWrapper } from "@/components/StyledButton";
 import getSearchResults from "@/utils/searchFilter";
 import SearchPlant from "@/components/SearchPlant";
 import SearchResults from "@/components/SearchResults";
-
+import { SearchWrapper } from "@/components/SearchWrapper";
+import { useEffect } from "react";
 const EmptyStateWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,6 +26,10 @@ export default function MyCollection({
   setSearchQuery,
 }) {
   const { data: plants, error, isLoading } = useSWR("/api/plants");
+
+  useEffect(() => {
+    setSearchQuery("");
+  }, [setSearchQuery]);
 
   if (isLoading) return <h2>Loading ..</h2>;
   if (error) return <h2> Error loading Plant.</h2>;
@@ -52,11 +57,13 @@ export default function MyCollection({
         <>
           <BackLink href="/">←</BackLink>
           <h1>My Collection</h1>
-          <SearchPlant
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
-          <SearchResults searchResults={searchResults} />
+          <SearchWrapper>
+            <SearchPlant
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+            <SearchResults searchResults={searchResults} />
+          </SearchWrapper>
           <CardContainer>
             {favoritePlants.map((plant) => (
               <PlantCard

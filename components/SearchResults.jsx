@@ -1,17 +1,34 @@
 import Link from "next/link";
+import styled from "styled-components";
+
+const ResultListItem = styled.li``;
+const ResultList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const ResultLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 export default function SearchResults({ searchResults }) {
   return (
     <>
-      <ul>
+      <ResultList>
         {searchResults.map((plant) => (
-          <li key={plant._id}>
-            <Link href={`/plants/${plant._id}`}>
+          <ResultListItem key={plant._id}>
+            <ResultLink href={`/plants/${plant._id}`}>
               {plant.name} ({plant.botanicalName}){" "}
-            </Link>
-          </li>
+            </ResultLink>
+          </ResultListItem>
         ))}
-      </ul>
+      </ResultList>
     </>
   );
 }
