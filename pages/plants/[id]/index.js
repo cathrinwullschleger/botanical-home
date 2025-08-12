@@ -6,9 +6,9 @@ import { useState } from "react";
 import PlantDetailCard from "@/components/PlantDetailCard";
 
 const DetailPageWrapper = styled.div`
-  max-width: 700px; /* max Breite für Detailseite */
-  margin: 40px auto; /* zentriert und oben Abstand */
-  padding: 0 16px; /* horizontaler Abstand mobil */
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 16px;
 `;
 
 export default function DetailsPage({ likedPlants, toggleLikedPlant }) {

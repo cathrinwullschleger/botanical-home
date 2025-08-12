@@ -9,6 +9,7 @@ const FilterBarWrapper = styled.div`
   margin: 40px auto;
   max-width: 1200px;
   padding: 0 20px;
+  margin-top: 2rem;
 
   @media (min-width: 600px) {
     flex-direction: row;

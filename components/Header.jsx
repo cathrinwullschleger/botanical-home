@@ -15,7 +15,7 @@ const HeaderWrapper = styled.header`
 `;
 const Title = styled.h1`
   font-family: var(--font-family-h);
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   margin: 0;
   color: var(--color-light-dark);
   margin-bottom: 1rem;
@@ -29,7 +29,7 @@ const Nav = styled.nav`
 `;
 
 const Dot = styled.span`
-  font-size: 1.25rem;
+  font-size: 0.5;
   color: var(--color-light-dark);
   display: none;
   @media (min-width: 900px) {

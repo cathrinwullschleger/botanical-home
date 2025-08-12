@@ -42,10 +42,9 @@ const StyledForm = styled.form`
     font-family: var(--font-family-body);
     width: 100%;
     padding: 0.6rem;
-    border: 1px solid var(--color-shadow-black);
+    border: 1px solid var(--color-shadow-black-rgba);
     border-radius: 4px;
     font-size: 1rem;
-    transition: border-color 0.2s ease;
   }
   textarea {
     resize: vertical;

@@ -40,9 +40,9 @@ export default createGlobalStyle`
     font-family: var(--font-family-h);
     color: var(--color-light-dark);
     font-weight: 400;
-    margin-bottom: 5rem;
+    margin-bottom: 3.5rem;
     margin-top: 1rem;
-    font-size: 1.4rem;
+    font-size:2rem;
     line-height: 1.2;
       text-align: center;
   }

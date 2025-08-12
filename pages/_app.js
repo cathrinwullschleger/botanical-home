@@ -2,11 +2,13 @@ import GlobalStyle, { mulish, italiana } from "../styles";
 import { SWRConfig } from "swr";
 import Layout from "@/components/Layout";
 import useLocalStorageState from "use-local-storage-state";
+import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [likedPlants, setLikedPlants] = useLocalStorageState("likedPlants", {
     defaultValue: [],
   });
+  const [searchQuery, setSearchQuery] = useState("");
 
   function toggleLikedPlant(id) {
     setLikedPlants(
@@ -36,6 +38,8 @@ export default function App({ Component, pageProps }) {
               {...pageProps}
               likedPlants={likedPlants}
               toggleLikedPlant={toggleLikedPlant}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
             />
           </Layout>
         </div>

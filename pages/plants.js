@@ -1,13 +1,29 @@
 import useSWR from "swr";
 import PlantCard, { CardContainer } from "@/components/PlantCard";
-import Introduction from "@/components/Introduction";
+import SearchPlant from "@/components/SearchPlant";
+import SearchResults from "@/components/SearchResults";
 import FilterBar from "@/components/FilterBar";
 import { useState } from "react";
+import getSearchResults from "@/utils/searchFilter";
+import { SearchWrapper } from "@/components/SearchWrapper";
+import { useEffect } from "react";
+import { PlantPageHeader } from "@/components/PlantsPageHeader";
 
-export default function PlantsPage({ likedPlants, toggleLikedPlant }) {
+export default function PlantsPage({
+  likedPlants,
+  toggleLikedPlant,
+  searchQuery,
+  setSearchQuery,
+}) {
   const [activeFilter, setActiveFilter] = useState(null);
 
   const { data: plants, error, isLoading } = useSWR("/api/plants");
+
+  useEffect(() => {
+    setSearchQuery("");
+  }, [setSearchQuery]);
+
+  const searchResults = getSearchResults(plants, searchQuery);
 
   const filteredPlants = activeFilter
     ? plants.filter((plant) => plant.lightNeed === activeFilter)
@@ -25,7 +41,18 @@ export default function PlantsPage({ likedPlants, toggleLikedPlant }) {
 
   return (
     <>
-      <h1>Plant Collection</h1>
+      <PlantPageHeader>
+        <h1>Plant Collection</h1>
+        <SearchWrapper>
+          <SearchPlant
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          {searchResults.length > 0 && (
+            <SearchResults searchResults={searchResults} />
+          )}
+        </SearchWrapper>
+      </PlantPageHeader>
       <FilterBar activeFilter={activeFilter} onChange={setActiveFilter} />
       <CardContainer>
         {filteredPlants.map((plant) => (
