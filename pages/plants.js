@@ -48,7 +48,9 @@ export default function PlantsPage({
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />
-          <SearchResults searchResults={searchResults} />
+          {searchResults.length > 0 && (
+            <SearchResults searchResults={searchResults} />
+          )}
         </SearchWrapper>
       </PlantPageHeader>
       <FilterBar activeFilter={activeFilter} onChange={setActiveFilter} />

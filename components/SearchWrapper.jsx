@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const SearchWrapper = styled.div`
+  position: absolute;
+  z-index: 1;
+  top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,13 +11,8 @@ export const SearchWrapper = styled.div`
   gap: 0.7rem;
   width: 100%;
   max-width: 1100px;
-  margin-top: 1rem;
 
   @media (min-width: 600px) {
-    align-items: flex-end;
-  }
-
-  @media (min-width: 900px) {
     align-items: flex-end;
   }
 `;

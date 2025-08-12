@@ -8,6 +8,12 @@ const ResultList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: var(--color-background-white);
+  max-height: 300px;
+  overflow: scroll;
+  padding: 1rem 0.5rem;
+  box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
+  border-radius: 0.12rem;
 `;
 
 const ResultLink = styled(Link)`
