@@ -6,7 +6,7 @@ export default async function handler(request, response) {
     await dbConnect();
     const { slug } = request.query;
     if (request.method === "GET") {
-      const plant = await Plant.findById(slug);
+      const plant = await Plant.findOne({ slug });
 
       if (!plant) {
         return response.status(404).json({ status: "No Plant found!" });
@@ -15,7 +15,7 @@ export default async function handler(request, response) {
     }
 
     if (request.method === "DELETE") {
-      const deleted = await Plant.findByIdAndDelete(slug);
+      const deleted = await Plant.findOneAndDelete({ slug });
       if (!deleted) {
         return response.status(404).json({ status: "No Plant found!" });
       }
@@ -26,7 +26,7 @@ export default async function handler(request, response) {
 
     if (request.method === "PUT") {
       const plantData = request.body;
-      const updated = await Plant.findByIdAndUpdate(slug, plantData);
+      const updated = await Plant.findOneAndUpdate({ slug }, plantData);
       if (!updated) {
         return response.status(404).json({ status: "No Plant found!" });
       }

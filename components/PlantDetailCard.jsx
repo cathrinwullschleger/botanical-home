@@ -32,10 +32,10 @@ export default function PlantDetailCard({
   plant,
   isLiked,
   onToggle,
-  id,
   showConfirm,
   setShowConfirm,
   onDelete,
+  slug,
 }) {
   const [copyMessage, setCopyMessage] = useState(false);
 
@@ -72,7 +72,7 @@ export default function PlantDetailCard({
         <p>{plant.lightNeed}</p>
       </InlineWrapper>
       <ButtonWrapper>
-        <StyledLink href={`/plants/${id}/edit`}>Edit this Plant</StyledLink>
+        <StyledLink href={`/plants/${slug}/edit`}>Edit this Plant</StyledLink>
 
         {!showConfirm && (
           <StyledButton onClick={() => setShowConfirm(true)} type="button">
@@ -95,7 +95,7 @@ export default function PlantDetailCard({
       )}
       <Sharebutton
         onClick={() => {
-          CopyToClipboard(`https://botanical-home.vercel.app/plants/${id}`);
+          CopyToClipboard(`https://botanical-home.vercel.app/plants/${slug}`);
           setCopyMessage(true);
           setTimeout(() => {
             setCopyMessage(false);

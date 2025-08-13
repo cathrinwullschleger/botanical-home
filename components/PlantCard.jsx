@@ -74,7 +74,7 @@ export default function PlantCard({ plant, isLiked, onToggle }) {
   return (
     <StyledCard>
       <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
-      <CardLink href={`/plants/${plant._id}`}>
+      <CardLink href={`/plants/${plant.slug}`}>
         <PlantImage
           src={plant.imageUrl}
           alt={plant.name || "Plant Image"}

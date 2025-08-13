@@ -51,6 +51,7 @@ export default function DetailsPage({ likedPlants, toggleLikedPlant }) {
           setShowConfirm={setShowConfirm}
           isLiked={likedPlants.includes(plant._id)}
           onToggle={() => toggleLikedPlant(plant._id)}
+          slug={plant.slug}
         />
       </DetailPageWrapper>
     </>

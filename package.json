@@ -1,7 +1,6 @@
 {
   "name": "botanical-home",
   "version": "0.0.0-unreleased",
-  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",

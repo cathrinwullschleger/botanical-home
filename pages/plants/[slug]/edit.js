@@ -52,6 +52,7 @@ export default function EditPage({ likedPlants, toggleLikedPlant }) {
         onSubmit={editPlant}
         defaultData={plant}
         likedPlants={likedPlants}
+        slug={plant.slug}
       />
     </>
   );
