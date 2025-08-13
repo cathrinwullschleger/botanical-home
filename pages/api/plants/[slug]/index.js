@@ -1,5 +1,6 @@
 import dbConnect from "@/db/connect";
 import Plant from "@/db/models/Plant.js";
+import slugify from "@/utils/slugify";
 
 export default async function handler(request, response) {
   try {
@@ -26,6 +27,33 @@ export default async function handler(request, response) {
 
     if (request.method === "PUT") {
       const plantData = request.body;
+
+      //check if plant exisits to compare names
+      const existingPlant = await Plant.findOne({ slug });
+      if (!existingPlant) {
+        return response.status(404).json({ status: "No Plant found!" });
+      }
+
+      // only new slug when name changed
+      if (plantData.name && plantData.name !== existingPlant.name) {
+        let baseSlug = slugify(plantData.name);
+        let newSlug = baseSlug;
+        let counter = 1;
+
+        // does this name exisits? yes + number
+        while (
+          await Plant.findOne({
+            slug: newSlug,
+            _id: { $ne: existingPlant._id },
+          })
+        ) {
+          newSlug = `${baseSlug}-${counter}`;
+          counter++;
+        }
+
+        plantData.slug = newSlug;
+      }
+
       const updated = await Plant.findOneAndUpdate({ slug }, plantData);
       if (!updated) {
         return response.status(404).json({ status: "No Plant found!" });
