@@ -11,11 +11,6 @@ export const StyledButton = styled.button`
   cursor: pointer;
   font-weight: 400;
 
-  &:hover {
-    background: var(--color-light-dark);
-    color: var(--color-natural-white);
-  }
-
   ${({ $active }) =>
     $active &&
     `
