@@ -77,7 +77,8 @@ const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
 export default function Form({ onSubmit, defaultData, likedPlants }) {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
+
   const [showHint, setShowHint] = useState(false);
 
   function handleSubmit(event) {
@@ -204,7 +205,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             {" "}
             {defaultData ? "Safe changes" : "Add Plant"}
           </StyledButton>
-          <StyledLink href={defaultData ? `/plants/${id}` : `/plants`}>
+          <StyledLink href={defaultData ? `/plants/${slug}` : `/plants`}>
             Cancel
           </StyledLink>
         </ButtonWrapper>

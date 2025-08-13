@@ -13,23 +13,23 @@ const DetailPageWrapper = styled.div`
 
 export default function DetailsPage({ likedPlants, toggleLikedPlant }) {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
   const [showConfirm, setShowConfirm] = useState(false);
 
   const {
     data: plant,
     error,
     isLoading,
-  } = useSWR(id ? `/api/plants/${id}` : null);
+  } = useSWR(slug ? `/api/plants/${slug}` : null);
 
-  if (!id) return <h2>Please select a Plant.</h2>;
+  if (!slug) return <h2>Please select a Plant.</h2>;
   if (isLoading) return <h2>Loading ..</h2>;
   if (error) return <h2> Error loading Plant.</h2>;
   if (!plant && !isLoading && !error)
     return <h2>Unfortunately no Plant found. </h2>;
 
   async function handleDelete() {
-    const response = await fetch(`/api/plants/${id}`, { method: "DELETE" }); //delete request
+    const response = await fetch(`/api/plants/${slug}`, { method: "DELETE" }); //delete request
     if (!response.ok) {
       console.error(response.status);
       return;
@@ -44,13 +44,14 @@ export default function DetailsPage({ likedPlants, toggleLikedPlant }) {
 
       <DetailPageWrapper>
         <PlantDetailCard
-          id={id}
+          id={plant._id}
           plant={plant}
           onDelete={handleDelete}
           showConfirm={showConfirm}
           setShowConfirm={setShowConfirm}
           isLiked={likedPlants.includes(plant._id)}
           onToggle={() => toggleLikedPlant(plant._id)}
+          slug={plant.slug}
         />
       </DetailPageWrapper>
     </>

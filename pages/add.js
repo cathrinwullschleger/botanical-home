@@ -1,5 +1,7 @@
 import Form from "@/components/Form";
 import { useRouter } from "next/router";
+import slugify from "@/utils/slugify";
+
 import { BackLink } from "@/components/BackLink";
 
 export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
@@ -8,6 +10,8 @@ export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
   async function addPlant(plant) {
     try {
       const { addToFavorites, ...cleanData } = plant; // info of addToFavorites (but not add to the DB, just localstorage (togglelikedplant in_app)
+      cleanData.slug = slugify(cleanData.name);
+
       const res = await fetch("/api/plants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

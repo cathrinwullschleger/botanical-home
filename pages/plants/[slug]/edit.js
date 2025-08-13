@@ -5,16 +5,16 @@ import Form from "@/components/Form";
 
 export default function EditPage({ likedPlants, toggleLikedPlant }) {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
   const {
     data: plant,
     error,
     isLoading,
-  } = useSWR(id ? `/api/plants/${id}` : null);
+  } = useSWR(slug ? `/api/plants/${slug}` : null);
 
   async function editPlant(plant) {
     try {
-      const response = await fetch(`/api/plants/${id}`, {
+      const response = await fetch(`/api/plants/${slug}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -26,13 +26,13 @@ export default function EditPage({ likedPlants, toggleLikedPlant }) {
       }
 
       if (plant.addToFavorites) {
-        if (!likedPlants.includes(id)) {
-          toggleLikedPlant(id); // add to likedPlants
+        if (!likedPlants.includes(plant._id)) {
+          toggleLikedPlant(plant._id); // add to likedPlants
         }
         router.push("/my-plants");
       } else {
-        if (likedPlants.includes(id)) {
-          toggleLikedPlant(id); // remove from likedPlant
+        if (likedPlants.includes(plant._id)) {
+          toggleLikedPlant(plant._id); // remove from likedPlant
         }
         router.push("/plants");
       }
@@ -52,6 +52,7 @@ export default function EditPage({ likedPlants, toggleLikedPlant }) {
         onSubmit={editPlant}
         defaultData={plant}
         likedPlants={likedPlants}
+        slug={plant.slug}
       />
     </>
   );

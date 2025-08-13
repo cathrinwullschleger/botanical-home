@@ -9,6 +9,7 @@ const plantSchema = new mongoose.Schema(
     lightNeed: { type: String, required: true },
     fertiliserSeason: [{ type: String, required: true }],
     description: { type: String, required: true },
+    slug: { type: String, unique: true },
   },
   { timestamps: true }
 );
