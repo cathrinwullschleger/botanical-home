@@ -54,7 +54,9 @@ export default async function handler(request, response) {
         plantData.slug = newSlug;
       }
 
-      const updated = await Plant.findOneAndUpdate({ slug }, plantData);
+      const updated = await Plant.findOneAndUpdate({ slug }, plantData, {
+        new: true,
+      });
       if (!updated) {
         return response.status(404).json({ status: "No Plant found!" });
       }

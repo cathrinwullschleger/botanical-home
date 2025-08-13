@@ -1,6 +1,3 @@
-import "dotenv/config";
-console.log("MONGODB_URI:", process.env.MONGODB_URI);
-
 import dbConnect from "../db/connect.js";
 import Plant from "../db/models/Plant.js";
 import slugify from "slugify";
