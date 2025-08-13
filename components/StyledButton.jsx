@@ -22,6 +22,16 @@ export const StyledButton = styled.button`
     text-decoration: underline;
    
     `}
+  &:hover:not(:disabled) {
+    background: var(--color-light-dark);
+    color: var(--color-natural-white);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    border-color: var(--color-light-dark);
+  }
 `;
 
 export const ButtonWrapper = styled.div`

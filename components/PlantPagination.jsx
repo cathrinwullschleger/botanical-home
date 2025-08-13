@@ -4,7 +4,7 @@ import { useState } from "react";
 import { StyledButton } from "./StyledButton";
 import styled from "styled-components";
 
-const PaningationContainer = styled.div`
+const PaginationContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +42,7 @@ export default function PlantPagination({
       ))}
 
       {totalPages > 1 && (
-        <PaningationContainer>
+        <PaginationContainer>
           <StyledButton
             onClick={() => setPage((p) => Math.max(p - 1, 1))}
             disabled={page === 1}
@@ -58,7 +58,7 @@ export default function PlantPagination({
           >
             Next
           </StyledButton>
-        </PaningationContainer>
+        </PaginationContainer>
       )}
     </>
   );
