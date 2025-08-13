@@ -13,6 +13,10 @@ const FormWrapper = styled.div`
   background: var(--color-background-white);
   box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
 
+  @media (max-width: 599px) {
+    max-width: calc(100% - 32px);
+  }
+
   @media (min-width: 600px) {
     max-width: 600px;
     padding: 20px;

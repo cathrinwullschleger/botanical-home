@@ -31,7 +31,7 @@ export default function SearchResults({ searchResults }) {
       <ResultList>
         {searchResults.map((plant) => (
           <li key={plant._id}>
-            <ResultLink href={`/plants/${plant._id}`}>
+            <ResultLink href={`/plants/${plant.slug}`}>
               {plant.name} ({plant.botanicalName}){" "}
             </ResultLink>
           </li>

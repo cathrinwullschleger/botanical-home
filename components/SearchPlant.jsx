@@ -19,6 +19,7 @@ export default function SearchPlant({ setSearchQuery }) {
       <StyledInput
         name="search"
         onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
+        onBlur={() => setSearchQuery("")}
         placeholder="Search .."
       ></StyledInput>
     </>

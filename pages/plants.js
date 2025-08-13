@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import PlantCard, { CardContainer } from "@/components/PlantCard";
+import { CardContainer } from "@/components/PlantCard";
 import SearchPlant from "@/components/SearchPlant";
 import SearchResults from "@/components/SearchResults";
 import FilterBar from "@/components/FilterBar";
@@ -8,6 +8,7 @@ import getSearchResults from "@/utils/searchFilter";
 import { SearchWrapper } from "@/components/SearchWrapper";
 import { useEffect } from "react";
 import { PlantPageHeader } from "@/components/PlantsPageHeader";
+import PlantPagination from "@/components/PlantPagination";
 
 export default function PlantsPage({
   likedPlants,
@@ -55,14 +56,12 @@ export default function PlantsPage({
       </PlantPageHeader>
       <FilterBar activeFilter={activeFilter} onChange={setActiveFilter} />
       <CardContainer>
-        {filteredPlants.map((plant) => (
-          <PlantCard
-            key={plant._id}
-            plant={plant}
-            isLiked={likedPlants.includes(plant._id)}
-            onToggle={() => toggleLikedPlant(plant._id)}
-          />
-        ))}
+        <PlantPagination
+          plants={filteredPlants}
+          likedPlants={likedPlants}
+          toggleLikedPlant={toggleLikedPlant}
+          activeFilter={[activeFilter]}
+        />
       </CardContainer>
     </>
   );

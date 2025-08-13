@@ -1,4 +1,4 @@
-import PlantCard, { CardContainer } from "@/components/PlantCard";
+import { CardContainer } from "@/components/PlantCard";
 import { BackLink } from "@/components/BackLink";
 import { StyledLink } from "@/components/StyledLink";
 import useSWR from "swr";
@@ -10,6 +10,7 @@ import SearchResults from "@/components/SearchResults";
 import { SearchWrapper } from "@/components/SearchWrapper";
 import { useEffect } from "react";
 import { PlantPageHeader } from "@/components/PlantsPageHeader";
+import PlantPagination from "@/components/PlantPagination";
 const EmptyStateWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,14 +71,11 @@ export default function MyCollection({
             </SearchWrapper>
           </PlantPageHeader>
           <CardContainer>
-            {favoritePlants.map((plant) => (
-              <PlantCard
-                key={plant._id}
-                plant={plant}
-                isLiked={true}
-                onToggle={() => toggleLikedPlant(plant._id)}
-              />
-            ))}
+            <PlantPagination
+              plants={favoritePlants}
+              likedPlants={likedPlants}
+              toggleLikedPlant={toggleLikedPlant}
+            />
           </CardContainer>
         </>
       )}
