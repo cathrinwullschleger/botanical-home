@@ -193,7 +193,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             accept="image/*"
             onChange={(e) => {
               const file = e.target.files[0];
-              setFormData({ ...formData, imageFile: file }); // update FormData (required)
+              setImageFile(file);
               setPreview(file ? URL.createObjectURL(file) : null); // set preview
             }}
             required={!formData.imageUrl && !formData.imageFile}
