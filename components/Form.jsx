@@ -129,7 +129,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
     data.fertiliserSeason = formData.getAll("fertiliserSeason");
     data.addToFavorites = formData.get("addToFavorites") === "on"; // als Favorite hinzufügen
 
-    delete data.iamge; // we do not need it in json
+    delete data.imageFile;
 
     // Custom validation: at least one fertiliserSeason checkbox checked
     if (data.fertiliserSeason.length === 0) {
