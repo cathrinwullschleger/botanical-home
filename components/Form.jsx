@@ -210,7 +210,6 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
                 />
               </div>
             )}
-          </>
         </UploadContainer>
         <label htmlFor="waterNeed">Water Need</label>
         <StyledSelect
