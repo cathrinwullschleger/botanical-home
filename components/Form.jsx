@@ -110,10 +110,7 @@ const UploadTitle = styled.p`
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
 export default function Form({ onSubmit, defaultData, likedPlants }) {
-  const [formData, setFormData] = useState({
-    imageUrl: "",
-    imageFile: null,
-  });
+  const [imageFile, setImageFile] = useState(null);
   const router = useRouter();
   const { slug } = router.query;
 
