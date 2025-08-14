@@ -9,34 +9,22 @@ export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
   async function addPlant(plant, rawFormData) {
     let uploadedImageUrl = null;
     try {
-      // 1. Upload Image (if there is one)
-      if (rawFormData.get("imageFile")?.size > 0) {
-        // is there data?
+ // 1. Upload Image
+      const uploadRes = await fetch("/api/upload", {
+        method: "POST",
+        body: rawFormData,
+      });
 
-        // upload image
-        const uploadRes = await fetch("/api/upload", {
-          method: "POST",
-          body: rawFormData, // formdata
-        });
-
-        if (!uploadRes.ok) {
-          throw new Error("Image uploading failed");
-        }
-        const uploadResult = await uploadRes.json();
-        uploadedImageUrl = uploadResult.secure_url;
+      if (!uploadRes.ok) {
+        throw new Error("Image upload failed");
       }
-      // create plant as json
-      const { addToFavorites, imageFile, ...cleanData } = plant; // info of addToFavorites (but not add to the DB, just localstorage (togglelikedplant in_app)
-      // Debug: Schauen was wir senden
 
+      const { secure_url: imageUrl } = await uploadRes.json();
+
+      // 2. Create plant data
+      const { addToFavorites, imageFile, ...cleanData } = plant;
       cleanData.slug = slugify(cleanData.name);
-
-      // add image if there
-      if (uploadedImageUrl) {
-        cleanData.imageUrl = uploadedImageUrl;
-        cleanData.imageUrl = uploadedImageUrl; // add prio
-      }
-
+      cleanData.imageUrl = imageUrl;
       const res = await fetch("/api/plants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
