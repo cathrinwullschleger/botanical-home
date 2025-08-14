@@ -78,6 +78,12 @@ const StyledSelect = styled.select`
     color: var(--color-light-grey);
   }
 `;
+const UploadContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+`;
 
 const HiddenInput = styled.input`
   display: none;
@@ -90,7 +96,7 @@ const Uploadbutton = styled.label`
   padding: 0.5em 1em;
   font-size: 1rem;
   border-radius: 0.12rem;
-  width: auto;
+  display: inline-block;
   cursor: pointer;
   font-weight: 400;
 
@@ -98,7 +104,7 @@ const Uploadbutton = styled.label`
     text-decoration: underline;
   }
 `;
-const FileName = styled.p`
+const UploadTitle = styled.p`
   font-family: var(--font-family-body);
 `;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
@@ -177,33 +183,36 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             plants.
           </p>
         )}
-        <Uploadbutton htmlFor="imageFile">Image Upload</Uploadbutton>
-        <HiddenInput
-          id="imageFile"
-          name="imageFile"
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            setFormData({ ...formData, imageFile: file }); // FormData updaten
-            setPreview(file ? URL.createObjectURL(file) : null); // Preview setzen
-          }}
-          required={!formData.imageUrl && !formData.imageFile}
-        />
-        <>
-          {preview && (
-            <div>
-              <p>Selected file: {formData.imageFile.name}</p>
-              <Image
-                src={URL.createObjectURL(formData.imageFile)}
-                alt="Preview"
-                width={200}
-                height={200}
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          )}
-        </>
+        <UploadContainer>
+          <UploadTitle>Image Upload</UploadTitle>
+          <Uploadbutton htmlFor="imageFile">Choose file</Uploadbutton>
+          <HiddenInput
+            id="imageFile"
+            name="imageFile"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              setFormData({ ...formData, imageFile: file }); // update FormData (required)
+              setPreview(file ? URL.createObjectURL(file) : null); // set preview
+            }}
+            required={!formData.imageUrl && !formData.imageFile}
+          />
+          <>
+            {preview && (
+              <div>
+                <p>Selected file: {formData.imageFile.name}</p>
+                <Image
+                  src={URL.createObjectURL(formData.imageFile)}
+                  alt="Preview"
+                  width={200}
+                  height={200}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            )}
+          </>
+        </UploadContainer>
         <label htmlFor="waterNeed">Water Need</label>
         <StyledSelect
           id="waterNeed"
