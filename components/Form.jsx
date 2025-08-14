@@ -198,7 +198,6 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             }}
             required
           />
-          <>
             {preview && (
               <div>
                 <p>Selected file: {formData.imageFile.name}</p>
