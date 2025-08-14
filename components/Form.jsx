@@ -196,7 +196,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
               setImageFile(file);
               setPreview(file ? URL.createObjectURL(file) : null); // set preview
             }}
-            required={!formData.imageUrl && !formData.imageFile}
+            required
           />
           <>
             {preview && (
