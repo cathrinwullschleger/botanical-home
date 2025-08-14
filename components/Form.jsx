@@ -114,7 +114,6 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
   const router = useRouter();
   const { slug } = router.query;
 
-  const [showHint, setShowHint] = useState(false);
   const [preview, setPreview] = useState(null);
 
   function handleSubmit(event) {
@@ -158,28 +157,6 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
           required
         />
 
-        <label htmlFor="imageUrl">Image Url</label>
-        <input
-          id="imageUrl"
-          name="imageUrl"
-          type="text"
-          onFocus={() => setShowHint(true)}
-          defaultValue={defaultData?.imageUrl}
-          onChange={(e) =>
-            setFormData({ ...formData, imageUrl: e.target.value })
-          }
-        />
-        {showHint && (
-          <p>
-            Please enter a valid image URL starting with <code>http://</code> or{" "}
-            <code>https://</code>. Check out{" "}
-            <a href="https://unsplash.com/@feeypflanzen" target="_blank">
-              feeypflanzen
-            </a>{" "}
-            - she shares beautiful plant photos and has a huge variety of
-            plants.
-          </p>
-        )}
         <UploadContainer>
           <UploadTitle>Image Upload</UploadTitle>
           <Uploadbutton htmlFor="imageFile">Choose file</Uploadbutton>
@@ -195,18 +172,18 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             }}
             required
           />
-            {preview && (
-              <div>
-                <p>Selected file: {imageFile.name}</p>
-                <Image
-                  src={preview}
-                  alt="Preview"
-                  width={200}
-                  height={200}
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            )}
+          {preview && (
+            <div>
+              <p>Selected file: {imageFile.name}</p>
+              <Image
+                src={preview}
+                alt="Preview"
+                width={200}
+                height={200}
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          )}
         </UploadContainer>
         <label htmlFor="waterNeed">Water Need</label>
         <StyledSelect
