@@ -1,22 +1,36 @@
 import Form from "@/components/Form";
 import { useRouter } from "next/router";
 import slugify from "@/utils/slugify";
-
 import { BackLink } from "@/components/BackLink";
 
 export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
   const router = useRouter();
 
-  async function addPlant(plant) {
+  async function addPlant(plant, rawFormData) {
+    let uploadedImageUrl = null;
     try {
-      const { addToFavorites, ...cleanData } = plant; // info of addToFavorites (but not add to the DB, just localstorage (togglelikedplant in_app)
-      cleanData.slug = slugify(cleanData.name);
+ // 1. Upload Image
+      const uploadRes = await fetch("/api/upload", {
+        method: "POST",
+        body: rawFormData,
+      });
 
+      if (!uploadRes.ok) {
+        throw new Error("Image upload failed");
+      }
+
+      const { secure_url: imageUrl } = await uploadRes.json();
+
+      // 2. Create plant data
+      const { addToFavorites, imageFile, ...cleanData } = plant;
+      cleanData.slug = slugify(cleanData.name);
+      cleanData.imageUrl = imageUrl;
       const res = await fetch("/api/plants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cleanData),
       });
+
       const newPlant = await res.json(); // newPlant to have id (created in api)
 
       if (!res.ok) {

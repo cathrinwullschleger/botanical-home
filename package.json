@@ -11,9 +11,11 @@
     "update-slug": "node -r dotenv/config scripts/updateSlugs.js"
   },
   "dependencies": {
+    "cloudinary": "^2.7.0",
     "dotenv": "^17.2.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
+    "formidable": "^3.5.4",
     "mongodb": "^6.18.0",
     "mongoose": "^8.16.4",
     "next": "13.4.8",

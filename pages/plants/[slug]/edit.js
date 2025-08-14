@@ -12,8 +12,23 @@ export default function EditPage({ likedPlants, toggleLikedPlant }) {
     isLoading,
   } = useSWR(slug ? `/api/plants/${slug}` : null);
 
-  async function editPlant(plant) {
-    try {
+  async function editPlant(plantData, rawFormData) {
+      try {
+      // 1. Handle image upload
+      const uploadRes = await fetch("/api/upload", {
+        method: "PUT",
+        body: rawFormData,
+      });
+
+      if (!uploadRes.ok) {
+        throw new Error("Image upload failed");
+      }
+
+      const { secure_url: imageUrl } = await uploadRes.json();
+
+      // 2. Prepare plant data
+      const { imageFile, ...plant } = plantData;
+      plant.imageUrl = imageUrl;
       const response = await fetch(`/api/plants/${slug}`, {
         method: "PUT",
         headers: {
