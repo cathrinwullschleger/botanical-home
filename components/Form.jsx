@@ -202,7 +202,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
               <div>
                 <p>Selected file: {imageFile.name}</p>
                 <Image
-                  src={URL.createObjectURL(formData.imageFile)}
+                  src={preview}
                   alt="Preview"
                   width={200}
                   height={200}
