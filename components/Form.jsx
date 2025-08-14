@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
 import { useState } from "react";
 import { StyledLink } from "./StyledLink";
+import Image from "next/image";
 
 const FormWrapper = styled.div`
   max-width: 700px;
@@ -77,20 +78,52 @@ const StyledSelect = styled.select`
     color: var(--color-light-grey);
   }
 `;
+
+const HiddenInput = styled.input`
+  display: none;
+`;
+
+const Uploadbutton = styled.label`
+  border: 1px solid black;
+
+  background: transparent;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border-radius: 0.12rem;
+  width: auto;
+  cursor: pointer;
+  font-weight: 400;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+const FileName = styled.p`
+  font-family: var(--font-family-body);
+`;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
 export default function Form({ onSubmit, defaultData, likedPlants }) {
+  const [formData, setFormData] = useState({
+    imageUrl: "",
+    imageFile: null,
+  });
   const router = useRouter();
   const { slug } = router.query;
 
   const [showHint, setShowHint] = useState(false);
+  const [preview, setPreview] = useState(null);
 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
+
+    // text data to object
     const data = Object.fromEntries(formData);
     data.fertiliserSeason = formData.getAll("fertiliserSeason");
     data.addToFavorites = formData.get("addToFavorites") === "on"; // als Favorite hinzufügen
+
+    delete data.iamge; // we do not need it in json
 
     // Custom validation: at least one fertiliserSeason checkbox checked
     if (data.fertiliserSeason.length === 0) {
@@ -98,7 +131,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
       return;
     }
 
-    onSubmit(data);
+    onSubmit(data, formData);
   }
 
   return (
@@ -129,7 +162,9 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
           type="text"
           onFocus={() => setShowHint(true)}
           defaultValue={defaultData?.imageUrl}
-          required
+          onChange={(e) =>
+            setFormData({ ...formData, imageUrl: e.target.value })
+          }
         />
         {showHint && (
           <p>
@@ -142,7 +177,33 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             plants.
           </p>
         )}
-
+        <Uploadbutton htmlFor="imageFile">Image Upload</Uploadbutton>
+        <HiddenInput
+          id="imageFile"
+          name="imageFile"
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            setFormData({ ...formData, imageFile: file }); // FormData updaten
+            setPreview(file ? URL.createObjectURL(file) : null); // Preview setzen
+          }}
+          required={!formData.imageUrl && !formData.imageFile}
+        />
+        <>
+          {preview && (
+            <div>
+              <p>Selected file: {formData.imageFile.name}</p>
+              <Image
+                src={URL.createObjectURL(formData.imageFile)}
+                alt="Preview"
+                width={200}
+                height={200}
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          )}
+        </>
         <label htmlFor="waterNeed">Water Need</label>
         <StyledSelect
           id="waterNeed"

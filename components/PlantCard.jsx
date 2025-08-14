@@ -71,12 +71,13 @@ export const PlantImage = styled(Image)`
 `;
 
 export default function PlantCard({ plant, isLiked, onToggle }) {
+  const imageSrc = plant.uploadedImageUrl || plant.imageUrl;
   return (
     <StyledCard>
       <FavoriteButton isLiked={isLiked} onToggle={onToggle} />
       <CardLink href={`/plants/${plant.slug}`}>
         <PlantImage
-          src={plant.imageUrl}
+          src={plant.imageUrl || plant.uploadedImageUrl}
           alt={plant.name || "Plant Image"}
           width={200}
           height={200}
