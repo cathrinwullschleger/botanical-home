@@ -4,7 +4,7 @@ import FavoriteButton from "./FavoriteButton";
 import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
 import { StyledLink } from "./StyledLink";
 import { Sharebutton } from "./ShareButton";
-import { StyledCard } from "./PlantCard";
+import { StyledCard } from "./PlantCard/PlantCard";
 import { useState } from "react";
 
 export const ImageWrapper = styled.div`

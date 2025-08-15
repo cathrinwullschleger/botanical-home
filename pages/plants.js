@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { CardContainer } from "@/components/PlantCard";
+import { CardContainer } from "@/components/PlantCard/PlantCard.styles";
 import SearchPlant from "@/components/SearchPlant";
 import SearchResults from "@/components/SearchResults";
 import FilterBar from "@/components/FilterBar/FilterBar";
