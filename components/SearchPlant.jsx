@@ -17,6 +17,7 @@ export default function SearchPlant({ setSearchQuery }) {
       <label htmlFor="search">Searching for a specific plant? </label>
 
       <StyledInput
+        id="search"
         name="search"
         onChange={(event) => setSearchQuery(event.target.value.toLowerCase())}
         placeholder="Search .."

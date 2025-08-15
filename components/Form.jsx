@@ -107,6 +107,11 @@ const Uploadbutton = styled.label`
 const UploadTitle = styled.p`
   font-family: var(--font-family-body);
 `;
+
+const Notice = styled.p`
+  font-family: var(--font-family-body);
+  text-align: left;
+`;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
 export default function Form({ onSubmit, defaultData, likedPlants }) {
@@ -115,6 +120,8 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
   const { slug } = router.query;
 
   const [preview, setPreview] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
+  const [showUploadNotice, setShowUploadNotice] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -123,16 +130,30 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
     // text data to object
     const data = Object.fromEntries(formData);
     data.fertiliserSeason = formData.getAll("fertiliserSeason");
-    data.addToFavorites = formData.get("addToFavorites") === "on"; // als Favorite hinzufügen
+    data.addToFavorites = formData.get("addToFavorites") === "on"; // add favorite
+    // handlich required fields
+    const errors = {};
 
-    delete data.imageFile;
+    if (!data.name) errors.name = "* Please enter a Name";
+    if (!data.botanicalName)
+      errors.botanicalName = "* Please enter a Botanical Name";
+    if (!imageFile) errors.imageFile = "* Please upload an Image";
+    if (!data.waterNeed) errors.waterNeed = "* Please select a Water Need";
+    if (!data.lightNeed) errors.lightNeed = "* Please select a Light Need";
+    if (data.fertiliserSeason.length === 0)
+      errors.fertiliserSeason =
+        "* Please select at least one Fertiliser Season";
+    if (!data.description) errors.description = "* Please enter a Description";
 
-    // Custom validation: at least one fertiliserSeason checkbox checked
-    if (data.fertiliserSeason.length === 0) {
-      alert("Please select at least one fertiliser season.");
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length > 0) {
+      // just required message not a backend error
+      setFormErrors(errors);
       return;
     }
 
+    delete data.imageFile;
     onSubmit(data, formData);
   }
 
@@ -140,26 +161,31 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
     <FormWrapper>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
+
         <input
           id="name"
           name="name"
           type="text"
           defaultValue={defaultData?.name}
-          required
         />
-
+        {formErrors.name && <p>{formErrors.name}</p>}
         <label htmlFor="botanicalName">Botanical Name</label>
         <input
           id="botanicalName"
           name="botanicalName"
           type="text"
           defaultValue={defaultData?.botanicalName}
-          required
         />
+        {formErrors.name && <p>{formErrors.botanicalName}</p>}
 
         <UploadContainer>
           <UploadTitle>Image Upload</UploadTitle>
-          <Uploadbutton htmlFor="imageFile">Choose file</Uploadbutton>
+          <Uploadbutton
+            htmlFor="imageFile"
+            onClick={() => setShowUploadNotice(true)} // showUploadNotive
+          >
+            Choose file
+          </Uploadbutton>
           <HiddenInput
             id="imageFile"
             name="imageFile"
@@ -170,8 +196,15 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
               setImageFile(file);
               setPreview(file ? URL.createObjectURL(file) : null); // set preview
             }}
-            required
           />
+          {showUploadNotice && (
+            <Notice>
+              By uploading images, you consent to their storage and display on
+              our platform.
+              <br />
+              Please ensure you have the rights to share them.
+            </Notice>
+          )}
           {preview && (
             <div>
               <p>Selected file: {imageFile.name}</p>
@@ -185,36 +218,35 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             </div>
           )}
         </UploadContainer>
+        {formErrors.imageFile && <p>{formErrors.imageFile}</p>}
         <label htmlFor="waterNeed">Water Need</label>
         <StyledSelect
           id="waterNeed"
           name="waterNeed"
           defaultValue={defaultData?.waterNeed}
-          required
         >
           <option value="">Select water need</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
         </StyledSelect>
-
+        {formErrors.waterNeed && <p>{formErrors.waterNeed}</p>}
         <label htmlFor="lightNeed">Light Need</label>
         <StyledSelect
           id="lightNeed"
           name="lightNeed"
           defaultValue={defaultData?.lightNeed}
-          required
         >
           <option value="">Select light need</option>
           <option value="Full Sun">Full Sun</option>
           <option value="Partial Shade">Partial Shade</option>
           <option value="Shade">Shade</option>
         </StyledSelect>
-
+        {formErrors.waterNeed && <p>{formErrors.lightNeed}</p>}
         <label>Fertiliser Season</label>
         <StyledCheckbox>
           {fertiliserSeasons.map((season) => (
-            <label key={season} style={{ marginRight: "1rem" }}>
+            <label key={season}>
               <input
                 type="checkbox"
                 name="fertiliserSeason"
@@ -225,7 +257,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
             </label>
           ))}
         </StyledCheckbox>
-
+        {formErrors.fertiliserSeason && <p>{formErrors.fertiliserSeason}</p>}
         <label htmlFor="description">Description</label>
         <textarea
           name="description"
@@ -233,11 +265,11 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
           cols="30"
           rows="5"
           defaultValue={defaultData?.description}
-          required
         ></textarea>
+        {formErrors.description && <p>{formErrors.description}</p>}
         <StyledCheckbox>
           <label htmlFor="addToFavorites">
-            Do you like to add this Plant to your Collection?
+            Add this Plant to my Collection
           </label>
           <input
             id="addToFavorites"

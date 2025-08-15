@@ -11,8 +11,13 @@ const HeartButton = styled.button`
 
 export default function FavoriteButton({ isLiked, onToggle }) {
   return (
-    <HeartButton onClick={onToggle} aria-label="Toggle favorite">
-      {isLiked ? "♥" : "♡"}
+    <HeartButton
+      onClick={onToggle}
+      aria-label={
+        isLiked ? "Remove from my Collection" : "Add to my Collection"
+      }
+    >
+      <span aria-hidden="true">{isLiked ? "♥" : "♡"}</span>
     </HeartButton>
   );
 }

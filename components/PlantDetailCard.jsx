@@ -114,7 +114,7 @@ export default function PlantDetailCard({
           style={{ marginRight: "8px" }}
         />
       </Sharebutton>{" "}
-      {copyMessage && <p> Link of the Plant is copied!</p>}
+      {copyMessage && <p> Link of the Plant has been copied to clipboard!</p>}
     </StyledCard>
   );
 }

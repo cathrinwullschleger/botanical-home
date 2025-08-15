@@ -29,6 +29,9 @@ export default function PlantPagination({
   useEffect(() => {
     setPage(1);
   }, [activeFilter]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
 
   return (
     <>
@@ -44,8 +47,12 @@ export default function PlantPagination({
       {totalPages > 1 && (
         <PaginationContainer>
           <StyledButton
-            onClick={() => setPage((p) => Math.max(p - 1, 1))}
+            onClick={() => {
+              setPage((p) => Math.max(p - 1, 1));
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             disabled={page === 1}
+            aria-label="Previous page"
           >
             Prev
           </StyledButton>
@@ -53,8 +60,12 @@ export default function PlantPagination({
             Page {page} of {totalPages}
           </span>
           <StyledButton
-            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+            onClick={() => {
+              setPage((p) => Math.min(p + 1, totalPages));
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             disabled={page === totalPages}
+            aria-label="Next page"
           >
             Next
           </StyledButton>

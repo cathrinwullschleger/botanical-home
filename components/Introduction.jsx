@@ -77,7 +77,7 @@ export default function Introduction() {
     <IntroWrapper>
       <IntroImage
         src="/intro.jpeg"
-        alt="Intro Picture"
+        alt="Intro Picture: Detail Picture of a leaf"
         width={450}
         height={550}
         objectFit="cover"

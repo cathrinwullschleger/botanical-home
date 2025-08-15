@@ -3,8 +3,8 @@ import Header from "./Header";
 import styled from "styled-components";
 
 const Main = styled.main`
-  padding: 11rem 0 2rem; /* Oben, Seiten, Unten */
-  margin: 0 auto; /* zentriert auf großen Bildschirmen */
+  padding: 11rem 0 2rem;
+  margin: 0 auto;
 `;
 
 export default function Layout({ children }) {
