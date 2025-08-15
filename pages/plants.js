@@ -2,7 +2,7 @@ import useSWR from "swr";
 import { CardContainer } from "@/components/PlantCard";
 import SearchPlant from "@/components/SearchPlant";
 import SearchResults from "@/components/SearchResults";
-import FilterBar from "@/components/FilterBar";
+import FilterBar from "@/components/FilterBar/FilterBar";
 import { useState } from "react";
 import getSearchResults from "@/utils/searchFilter";
 import { SearchWrapper } from "@/components/SearchWrapper";

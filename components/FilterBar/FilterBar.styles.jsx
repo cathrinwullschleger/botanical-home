@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FilterBarWrapper = styled.div`
+export const FilterBarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,23 +51,3 @@ export const FilterButton = styled.button`
    
     `}
 `;
-
-export default function FilterBar({ activeFilter, onChange }) {
-  const filterOptions = ["Full Sun", "Partial Shade", "Shade"];
-  return (
-    <>
-      <h3>Find the right plants for your room’s lighting conditions:</h3>
-      <FilterBarWrapper>
-        {filterOptions.map((option) => (
-          <FilterButton
-            key={option}
-            $active={activeFilter === option}
-            onClick={() => onChange(activeFilter === option ? null : option)}
-          >
-            {option}
-          </FilterButton>
-        ))}
-      </FilterBarWrapper>
-    </>
-  );
-}
