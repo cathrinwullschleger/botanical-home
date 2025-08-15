@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
-
-const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.header`
   position: fixed;
   width: 100%;
   margin: 0;
@@ -13,14 +11,14 @@ const HeaderWrapper = styled.header`
   text-align: center;
   z-index: 1000;
 `;
-const Title = styled.h1`
+export const Title = styled.h1`
   font-family: var(--font-family-h);
   font-size: 2.5rem;
   margin: 0;
   color: var(--color-light-dark);
   margin-bottom: 1rem;
 `;
-const Nav = styled.nav`
+export const Nav = styled.nav`
   padding-top: 0.25rem;
   display: flex;
   justify-content: center;
@@ -28,7 +26,7 @@ const Nav = styled.nav`
   gap: 1.4rem;
 `;
 
-const Dot = styled.span`
+export const Dot = styled.span`
   font-size: 0.5;
   color: var(--color-light-dark);
   display: none;
@@ -36,7 +34,7 @@ const Dot = styled.span`
     display: inline;
   }
 `;
-const NavLink = styled(Link)`
+export const NavLink = styled(Link)`
   position: relative;
   text-decoration: none;
   color: var(--color-light-dark);
@@ -59,30 +57,3 @@ const NavLink = styled(Link)`
     transform: scaleX(1);
   }
 `;
-
-export default function Header() {
-  const { pathname } = useRouter();
-
-  return (
-    <HeaderWrapper>
-      <Title>Botanical Home</Title>
-      <Nav>
-        <NavLink href="/" $active={pathname === "/"}>
-          Home
-        </NavLink>
-        <Dot>•</Dot>
-        <NavLink href="/plants" $active={pathname === "/plants"}>
-          Plants{" "}
-        </NavLink>
-        <Dot>•</Dot>
-        <NavLink href="/add" $active={pathname === "/add"}>
-          Add Plant
-        </NavLink>
-        <Dot>•</Dot>
-        <NavLink href="/my-plants" $active={pathname === "/my-plants"}>
-          My Plants
-        </NavLink>
-      </Nav>
-    </HeaderWrapper>
-  );
-}
