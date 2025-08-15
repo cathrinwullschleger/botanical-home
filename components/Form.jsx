@@ -108,8 +108,9 @@ const UploadTitle = styled.p`
   font-family: var(--font-family-body);
 `;
 
-const RequiredMessage = styled.p`
+const Notice = styled.p`
   font-family: var(--font-family-body);
+  text-align: left;
 `;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
@@ -120,6 +121,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
 
   const [preview, setPreview] = useState(null);
   const [formErrors, setFormErrors] = useState({});
+  const [showUploadNotice, setShowUploadNotice] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -159,6 +161,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
     <FormWrapper>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
+
         <input
           id="name"
           name="name"
@@ -166,7 +169,6 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
           defaultValue={defaultData?.name}
         />
         {formErrors.name && <p>{formErrors.name}</p>}
-
         <label htmlFor="botanicalName">Botanical Name</label>
         <input
           id="botanicalName"
@@ -178,7 +180,12 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
 
         <UploadContainer>
           <UploadTitle>Image Upload</UploadTitle>
-          <Uploadbutton htmlFor="imageFile">Choose file</Uploadbutton>
+          <Uploadbutton
+            htmlFor="imageFile"
+            onClick={() => setShowUploadNotice(true)} // showUploadNotive
+          >
+            Choose file
+          </Uploadbutton>
           <HiddenInput
             id="imageFile"
             name="imageFile"
@@ -190,7 +197,14 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
               setPreview(file ? URL.createObjectURL(file) : null); // set preview
             }}
           />
-
+          {showUploadNotice && (
+            <Notice>
+              By uploading images, you consent to their storage and display on
+              our platform.
+              <br />
+              Please ensure you have the rights to share them.
+            </Notice>
+          )}
           {preview && (
             <div>
               <p>Selected file: {imageFile.name}</p>
