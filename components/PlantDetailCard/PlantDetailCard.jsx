@@ -1,32 +1,11 @@
-import styled from "styled-components";
+import { ImageWrapper, InlineWrapper } from "./PlantDetailCard.styles";
 import Image from "next/image";
-import FavoriteButton from "./FavoriteButton";
+import FavoriteButton from "../FavoriteButton";
 import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
-import { StyledLink } from "./StyledLink";
-import { Sharebutton } from "./ShareButton";
-import { StyledCard } from "./PlantCard/PlantCard";
+import { StyledLink } from "../StyledLink";
+import { Sharebutton } from "../ShareButton";
+import { StyledCard } from "../PlantCard/PlantCard.styles";
 import { useState } from "react";
-
-export const ImageWrapper = styled.div`
-  width: 100%;
-  max-width: 400px;
-  aspect-ratio: 1 / 1; /* quadratisches Verhältnis */
-  margin: 0 auto 30px;
-  position: relative;
-  overflow: hidden;
-`;
-
-export const InlineWrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 1rem 0;
-
-  h4,
-  p {
-    margin: 0;
-  }
-`;
 
 export default function PlantDetailCard({
   plant,

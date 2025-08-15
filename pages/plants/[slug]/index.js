@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { BackLink } from "@/components/BackLink";
 import { useState } from "react";
-import PlantDetailCard from "@/components/PlantDetailCard";
+import PlantDetailCard from "@/components/PlantDetailCard/PlantDetailCard";
 
 const DetailPageWrapper = styled.div`
   max-width: 700px;
