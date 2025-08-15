@@ -9,7 +9,7 @@ export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
   async function addPlant(plant, rawFormData) {
     let uploadedImageUrl = null;
     try {
- // 1. Upload Image
+      // 1. Upload Image
       const uploadRes = await fetch("/api/upload", {
         method: "POST",
         body: rawFormData,
@@ -50,7 +50,9 @@ export default function CreatePlant({ likedPlants, toggleLikedPlant }) {
 
   return (
     <>
-      <BackLink href="/">←</BackLink>
+      <BackLink href="/">
+        <span aria-hidden="true">←</span>
+      </BackLink>
       <h1>Add a new Plant to the Collection</h1>
 
       <Form onSubmit={addPlant} likedPlants={likedPlants} />

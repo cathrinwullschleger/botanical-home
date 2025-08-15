@@ -237,7 +237,7 @@ export default function Form({ onSubmit, defaultData, likedPlants }) {
         ></textarea>
         <StyledCheckbox>
           <label htmlFor="addToFavorites">
-            Do you like to add this Plant to your Collection?
+            Add this Plant to my Collection
           </label>
           <input
             id="addToFavorites"

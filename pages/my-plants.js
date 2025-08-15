@@ -57,7 +57,6 @@ export default function MyCollection({
         </EmptyStateWrapper>
       ) : (
         <>
-          <BackLink href="/">←</BackLink>
           <PlantPageHeader>
             <h1>My Collection</h1>
             <SearchWrapper>
