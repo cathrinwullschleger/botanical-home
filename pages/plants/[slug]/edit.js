@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { BackLink } from "@/components/BackLink";
-import Form from "@/components/Form";
+import Form from "@/components/Form/Form";
 
 export default function EditPage({ likedPlants, toggleLikedPlant }) {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function EditPage({ likedPlants, toggleLikedPlant }) {
   } = useSWR(slug ? `/api/plants/${slug}` : null);
 
   async function editPlant(plantData, rawFormData) {
-      try {
+    try {
       // 1. Handle image upload
       const uploadRes = await fetch("/api/upload", {
         method: "PUT",

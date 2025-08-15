@@ -1,117 +1,22 @@
 import { useRouter } from "next/router";
-import styled from "styled-components";
-import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
 import { useState } from "react";
-import { StyledLink } from "./StyledLink";
+import { StyledButton, ButtonWrapper } from "@/components/StyledButton.jsx";
+
+import { StyledLink } from "../StyledLink";
+import {
+  UploadTitle,
+  Uploadbutton,
+  FormWrapper,
+  UploadContainer,
+  HiddenInput,
+  Notice,
+  StyledCheckbox,
+  StyledSelect,
+  StyledForm,
+} from "./Form.styles";
+
 import Image from "next/image";
 
-const FormWrapper = styled.div`
-  max-width: 700px;
-  width: 100%;
-  padding: 0 16px;
-  margin: 40px auto;
-  border-radius: 0.12rem;
-  background: var(--color-background-white);
-  box-shadow: 0 3px 10px var(--color-shadow-black-rgba);
-
-  @media (max-width: 599px) {
-    max-width: calc(100% - 32px);
-  }
-
-  @media (min-width: 600px) {
-    max-width: 600px;
-    padding: 20px;
-  }
-
-  @media (min-width: 900px) {
-    max-width: 900px;
-    padding: 24px;
-  }
-`;
-
-const StyledForm = styled.form`
-  display: grid;
-  gap: 1rem;
-  padding: 1rem 0;
-  font-family: var(--font-family-body);
-
-  label {
-    font-weight: 400;
-    margin-bottom: 0.3rem;
-    display: block;
-  }
-
-  input[type="text"],
-  select,
-  textarea {
-    font-family: var(--font-family-body);
-    width: 100%;
-    padding: 0.6rem;
-    border: 1px solid var(--color-shadow-black-rgba);
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  textarea {
-    resize: vertical;
-  }
-`;
-
-const StyledCheckbox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-
-  label {
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-`;
-
-const StyledSelect = styled.select`
-  font-family: var(--font-family-body);
-  font-size: 1rem;
-  color: var(--color-light-black);
-
-  &:invalid {
-    color: var(--color-light-grey);
-  }
-`;
-const UploadContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-start;
-`;
-
-const HiddenInput = styled.input`
-  display: none;
-`;
-
-const Uploadbutton = styled.label`
-  border: 1px solid black;
-
-  background: transparent;
-  padding: 0.5em 1em;
-  font-size: 1rem;
-  border-radius: 0.12rem;
-  display: inline-block;
-  cursor: pointer;
-  font-weight: 400;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-const UploadTitle = styled.p`
-  font-family: var(--font-family-body);
-`;
-
-const Notice = styled.p`
-  font-family: var(--font-family-body);
-  text-align: left;
-`;
 const fertiliserSeasons = ["Spring", "Summer", "Autumn", "Winter"];
 
 export default function Form({ onSubmit, defaultData, likedPlants }) {

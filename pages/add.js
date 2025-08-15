@@ -1,4 +1,4 @@
-import Form from "@/components/Form";
+import Form from "@/components/Form/Form";
 import { useRouter } from "next/router";
 import slugify from "@/utils/slugify";
 import { BackLink } from "@/components/BackLink";
