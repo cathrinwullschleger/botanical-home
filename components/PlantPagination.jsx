@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import PlantCard from "./PlantCard";
+import PlantCard from "./PlantCard/PlantCard";
 import { useState } from "react";
 import { StyledButton } from "./StyledButton";
 import styled from "styled-components";

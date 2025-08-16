@@ -1,4 +1,4 @@
-import { CardContainer } from "@/components/PlantCard";
+import { CardContainer } from "@/components/PlantCard/PlantCard";
 import { BackLink } from "@/components/BackLink";
 import { StyledLink } from "@/components/StyledLink";
 import useSWR from "swr";
