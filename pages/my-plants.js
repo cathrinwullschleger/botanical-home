@@ -1,5 +1,5 @@
-import { CardContainer } from "@/components/PlantCard/PlantCard";
-import { BackLink } from "@/components/BackLink";
+import { CardContainer } from "@/components/PlantCard/PlantCard.styles";
+
 import { StyledLink } from "@/components/StyledLink";
 import useSWR from "swr";
 import styled from "styled-components";
